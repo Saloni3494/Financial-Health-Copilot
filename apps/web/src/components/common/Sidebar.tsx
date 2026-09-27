@@ -43,15 +43,15 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Dashboard", labelHindi: "डैशबोर्ड", icon: LayoutDashboard, href: "/dashboard" },
-  { label: "Missions", labelHindi: "मिशन", icon: Target, href: "/missions" },
-  { label: "Impact & ROI", labelHindi: "प्रभाव", icon: LineChart, href: "/impact" },
-  { label: "Growth Memory", labelHindi: "स्मृति", icon: BrainCircuit, href: "/memory" },
-  { label: "Opportunities", labelHindi: "अवसर", icon: Lightbulb, href: "/opportunities" },
-  { label: "Pending Debt", labelHindi: "उधारी बही", icon: BookOpen, href: "/udhari" },
-  { label: "Cash Flow", labelHindi: "नकद प्रवाह", icon: TrendingUp, href: "/forecast" },
-  { label: "Health Score", labelHindi: "पेस्कोर", icon: Award, href: "/payscore" },
-  { label: "Chat with Copilot", labelHindi: "कॉपायलट से बात", icon: MessageSquare, href: "/chat" },
+  { label: "Dashboard", labelHindi: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
+  { label: "Missions", labelHindi: "Missions", icon: Target, href: "/missions" },
+  { label: "Impact & ROI", labelHindi: "Impact & ROI", icon: LineChart, href: "/impact" },
+  { label: "Growth Memory", labelHindi: "Growth Memory", icon: BrainCircuit, href: "/memory" },
+  { label: "Opportunities", labelHindi: "Opportunities", icon: Lightbulb, href: "/opportunities" },
+  { label: "Pending Debt", labelHindi: "Pending Debt", icon: BookOpen, href: "/udhari" },
+  { label: "Cash Flow", labelHindi: "Cash Flow", icon: TrendingUp, href: "/forecast" },
+  { label: "Health Score", labelHindi: "Health Score", icon: Award, href: "/payscore" },
+  { label: "Chat with Copilot", labelHindi: "Chat with Copilot", icon: MessageSquare, href: "/chat" },
 ];
 
 interface SidebarProps {

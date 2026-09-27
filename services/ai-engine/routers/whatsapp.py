@@ -437,16 +437,16 @@ async def twilio_webhook(request: Request):
             except Exception as e:
                 logger.error("NLU processing failed: %s", e)
                 reply_text = (
-                    "Namaste! Main Vyapaar GrowthOS hoon, aapka AI accountant.\n"
-                    "Aap mujhe Hindi ya English mein bol sakte hain:\n"
-                    "- \"500 ka income aaya\"\n"
-                    "- \"Sharma ji ko 1000 udhar diya\"\n"
-                    "- \"Aaj ka summary batao\""
+                    "Hello! I am Financial Copilot, your AI accountant.\n"
+                    "I can speak with you in English:\n"
+                    "- \"Added 500 income\"\n"
+                    "- \"Gave 1000 loan to Sharma\"\n"
+                    "- \"Tell me today's summary\""
                 )
     else:
         reply_text = (
-            "Namaste! Main Vyapaar GrowthOS hoon.\n"
-            "Text, photo (invoice), ya audio bhejein — main samajh lunga!"
+            "Hello! I am Financial Copilot.\n"
+            "Send text, photo (invoice), or audio — I can understand it all!"
         )
 
     # Store outbound reply
@@ -470,7 +470,7 @@ async def twilio_webhook(request: Request):
 
         # Truncate text to avoid TTS timeout (max ~200 chars)
         tts_text = reply_text[:200] if len(reply_text) > 200 else reply_text
-        audio_data_uri = await synthesize_speech(tts_text, "hi")
+        audio_data_uri = await synthesize_speech(tts_text, "en")
 
         if audio_data_uri and "base64," in audio_data_uri:
             # Decode base64 audio from Sarvam TTS

@@ -38,7 +38,7 @@ async def transcribe_audio(audio_bytes: bytes, language: str = "hi") -> str:
     Uses the unified multi_stt service which tries:
     OpenAI Whisper -> ElevenLabs Scribe v2 -> Sarvam AI -> Groq Whisper
 
-    Supports Hindi, English, and Hinglish. Returns the transcribed text.
+    Supports English. Returns the transcribed text.
     """
     from services.multi_stt import transcribe_multi
 
@@ -52,7 +52,7 @@ async def transcribe_audio(audio_bytes: bytes, language: str = "hi") -> str:
 # ---------------------------------------------------------------------------
 
 NLU_SYSTEM_PROMPT = """You are the NLU engine for Vyapaar GrowthOS, an AI accounting assistant for Indian small businesses.
-Given user speech (Hindi/Hinglish/English), extract:
+Given user speech, extract:
 1. intent: one of [add_income, add_expense, personal_withdrawal, add_udhari, settle_udhari, get_today_summary, get_udhari_summary, get_balance, send_reminder, setup_recurring, add_vendor_payment, add_vendor_order, check_vendor_balance, create_invoice, check_stock, mark_attendance, check_employee, employee_advance, greeting, help, unknown]
 2. entities: {amount, category, party_name, customer_name, beneficiary_name, description, phone, due_date, payment_mode, frequency, upi_id} -- only include what is present
 3. confidence: 0.0 to 1.0
@@ -169,7 +169,7 @@ async def run_nlu(text: str, language: str = "hi") -> NLUResult:
 # TTS -- Sarvam AI (optional, returns URL or None)
 # ---------------------------------------------------------------------------
 
-async def synthesize_speech(text: str, language: str = "hi") -> Optional[str]:
+async def synthesize_speech(text: str, language: str = "en") -> Optional[str]:
     """
     Convert response text to speech via Sarvam AI TTS.
 
@@ -265,7 +265,7 @@ async def process_voice(
         action_data = action_result.data
         success = action_result.success
     else:
-        # Conversational: use Groq LLM for a natural Hindi response
+        # Conversational: use Groq LLM for a natural English response
         import httpx as _httpx
         try:
             from models.db import select as _db_select
@@ -284,7 +284,7 @@ async def process_voice(
                     json={
                         "model": settings.groq_model,
                         "messages": [
-                            {"role": "system", "content": f"You are Vyapaar AI, a warm Hindi-speaking AI accountant. Respond in Hinglish, 2-3 sentences. Context: {ctx}"},
+                            {"role": "system", "content": f"You are the AI Financial Copilot, a warm AI accountant. Respond in English, 2-3 sentences. Context: {ctx}"},
                             {"role": "user", "content": transcript},
                         ],
                         "temperature": 0.7, "max_tokens": 200,
@@ -500,7 +500,7 @@ async def chat_with_muneem(req: VoiceTextRequest):
         context = "No data available yet"
 
     chat_prompt = f"""You are Vyapaar AI, a friendly and helpful AI accountant/CFO for Indian small businesses.
-You speak in Hindi-English mix (Hinglish). You are warm, professional, and knowledgeable about:
+You speak in English. You are warm, professional, and knowledgeable about:
 - Bookkeeping, P&L, cash flow
 - GST filing and tax optimization
 - Udhari (credit) management
@@ -590,7 +590,7 @@ async def process_text(req: VoiceTextRequest):
                     json={
                         "model": settings.groq_model,
                         "messages": [
-                            {"role": "system", "content": f"You are Vyapaar AI, a warm Hindi-speaking AI accountant for Indian small businesses. Respond in natural Hinglish, 2-3 sentences. Be helpful and specific. Context: {ctx}"},
+                            {"role": "system", "content": f"You are the AI Financial Copilot, a warm AI accountant. Respond in natural English, 2-3 sentences. Be helpful and specific. Context: {ctx}"},
                             {"role": "user", "content": req.text},
                         ],
                         "temperature": 0.7, "max_tokens": 200,
@@ -673,8 +673,8 @@ async def process_audio_multi(
             context = "No data yet"
 
         chat_prompt = (
-            "You are Vyapaar AI, a friendly Hindi-speaking AI accountant for Indian small businesses. "
-            "Respond in natural Hinglish (Hindi-English mix). Be warm, concise (2-3 sentences max). "
+            "You are the AI Financial Copilot, a friendly AI accountant. "
+            "Respond in natural English. Be warm, concise (2-3 sentences max). "
             f"Merchant context: {context}. "
             f"User said: {transcript}"
         )
@@ -760,7 +760,7 @@ async def process_voice_agentic(
     2. Classifies and routes to specialist agents
     3. Executes primary agents in parallel (action_router + relevant specialists)
     4. Executes secondary agents (payscore recalc, cashflow check)
-    5. Synthesizes Hindi response via Master Agent
+    5. Synthesizes English response via Master Agent
     6. Emits WebSocket events for real-time dashboard updates
     7. Returns complete response with TTS audio
 

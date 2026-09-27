@@ -36,10 +36,10 @@ settings = get_settings()
 
 COLLECTION_SYSTEM_PROMPT = """You are Vyapaar GrowthOS's collection message writer for Indian small businesses.
 
-Your task: Generate a WhatsApp message in Hindi to collect a pending udhari (informal credit) payment.
+Your task: Generate a WhatsApp message in English to collect a pending udhari (informal credit) payment.
 
 CRITICAL RULES:
-1. ALWAYS use "ji" suffix with the debtor's name (e.g., "Sharma ji")
+1. Be polite and use respectful titles where appropriate.
 2. NEVER use threatening or aggressive language
 3. Include the exact amount pending
 4. You MUST naturally embed the EXACT Paytm payment link provided in the prompt. Do not change, shorten, or replace it.
@@ -47,15 +47,15 @@ CRITICAL RULES:
 6. Be culturally sensitive — udhari is a social relationship in India
 7. RBI Fair Practices Code compliant — no harassment
 8. Each message should be UNIQUE (not copy-paste of previous ones)
-9. Use Hindi script (Devanagari) mixed with common English words like "payment", "link"
+9. Use clear, conversational English.
 10. Add appropriate emoji sparingly (1-2 max)
 
 TONE LEVELS:
-- friendly_reminder: Very casual, like reminding a friend. "Bas yaad dila raha tha..."
-- polite_follow_up: Still polite but more direct. "Request hai ki..."
-- firm_request: Business-like, mentions duration. "Kaafi time se pending hai..."
-- urgent_notice: Serious, emphasizes importance. "Ye important hai..."
-- escalation_notice: Final notice, mentions merchant involvement. "Ab directly baat karni padegi..."
+- friendly_reminder: Very casual, like reminding a friend. "Just a quick reminder..."
+- polite_follow_up: Still polite but more direct. "Please arrange for..."
+- firm_request: Business-like, mentions duration. "This has been pending for a while..."
+- urgent_notice: Serious, emphasizes importance. "This is an important reminder..."
+- escalation_notice: Final notice, mentions merchant involvement. "We will need to escalate..."
 
 Generate ONLY the message text. No explanation, no quotes, no formatting."""
 
@@ -71,7 +71,7 @@ async def generate_collection_message(
     previous_messages: list[str] = None,
     reminder_count: int = 0,
 ) -> str:
-    """Generate a culturally-aware Hindi collection message using Groq LLM"""
+    """Generate a culturally-aware English collection message using Groq LLM"""
 
     previous_context = ""
     if previous_messages:
@@ -88,7 +88,7 @@ Paytm payment link: {payment_link}
 Reminder number: {reminder_count + 1}
 {previous_context}
 
-Write the message in Hindi:"""
+Write the message in English:"""
 
     try:
         client = AsyncGroq(api_key=settings.groq_api_key)
@@ -111,11 +111,11 @@ def _fallback_message(debtor_name: str, amount: float, tone: str,
                       payment_link: str, merchant_name: str) -> str:
     """Fallback template messages if LLM fails"""
     templates = {
-        "friendly_reminder": f"Namaste {debtor_name}, {merchant_name} ki taraf se yaad dila raha hoon — Rs {amount:,.0f} pending hai. Ye link se bhej dijiye: {payment_link} 🙏",
-        "polite_follow_up": f"{debtor_name}, Rs {amount:,.0f} abhi bhi pending hai. Request hai ki jaldi bhej dijiye: {payment_link}",
-        "firm_request": f"{debtor_name}, Rs {amount:,.0f} ka payment kaafi time se pending hai. Kripya aaj settle karein: {payment_link}",
-        "urgent_notice": f"{debtor_name}, ye important reminder hai — Rs {amount:,.0f} pending. Please aaj hi bhejiye: {payment_link}",
-        "escalation_notice": f"{debtor_name}, Rs {amount:,.0f} ke baare mein kai baar yaad dilaya. Ab shop owner se directly baat hogi. Abhi settle karein: {payment_link}",
+        "friendly_reminder": f"Hello {debtor_name}, this is a gentle reminder from {merchant_name} regarding a pending amount of Rs {amount:,.0f}. Please pay via this link: {payment_link} 🙏",
+        "polite_follow_up": f"{debtor_name}, an amount of Rs {amount:,.0f} is still pending. Please process the payment soon: {payment_link}",
+        "firm_request": f"{debtor_name}, the payment of Rs {amount:,.0f} has been pending for a while. Please settle it today: {payment_link}",
+        "urgent_notice": f"{debtor_name}, this is an urgent reminder. Your pending balance is Rs {amount:,.0f}. Please pay today: {payment_link}",
+        "escalation_notice": f"{debtor_name}, despite multiple reminders, Rs {amount:,.0f} remains pending. Please settle immediately to avoid escalation: {payment_link}",
     }
     return templates.get(tone, templates["friendly_reminder"])
 

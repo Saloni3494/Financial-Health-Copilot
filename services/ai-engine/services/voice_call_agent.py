@@ -52,7 +52,7 @@ async def make_collection_call(
 
     Returns call status and metadata.
     """
-    # Generate the Hindi TTS script
+    # Generate the English TTS script
     script = _generate_call_script(
         debtor_name=debtor_name,
         amount=amount,
@@ -102,34 +102,34 @@ def _generate_call_script(
     merchant_owner: str,
     tone: str,
 ) -> str:
-    """Generate Hindi TTS script for the collection call."""
+    """Generate English TTS script for the collection call."""
     scripts = {
         "friendly_reminder": (
-            f"Namaste {debtor_name}! "
-            f"Yeh {merchant_name} ki taraf se ek yaad-dahaani hai. "
-            f"Aapke Rs {amount:,.0f} abhi pending hain. "
-            f"Aapki suvidha anusaar, Paytm link SMS mein bheja ja raha hai. "
-            f"Dhanyavaad!"
+            f"Hello {debtor_name}! "
+            f"This is a gentle reminder from {merchant_name}. "
+            f"Your payment of Rs {amount:,.0f} is currently pending. "
+            f"For your convenience, a payment link is being sent via SMS. "
+            f"Thank you!"
         ),
         "polite_follow_up": (
-            f"Namaste {debtor_name}! "
-            f"{merchant_owner} ki taraf se baat kar raha hoon. "
-            f"Rs {amount:,.0f} ka payment abhi tak pending hai. "
-            f"Kripya jaldi se jaldi bhej dijiye. "
-            f"Paytm payment link SMS mein mil jayega. Shukriya!"
+            f"Hello {debtor_name}! "
+            f"I am calling on behalf of {merchant_owner}. "
+            f"Your payment of Rs {amount:,.0f} is still pending. "
+            f"Please arrange to send it as soon as possible. "
+            f"You will receive a payment link via SMS. Thank you!"
         ),
         "firm_request": (
-            f"Namaste {debtor_name}! "
-            f"Yeh {merchant_name} se ek zaroori message hai. "
-            f"Rs {amount:,.0f} kaafi samay se pending hain. "
-            f"Kripya aaj hi settle karein. "
-            f"Payment link SMS mein bheja ja raha hai. Dhanyavaad."
+            f"Hello {debtor_name}! "
+            f"This is an important message from {merchant_name}. "
+            f"Your payment of Rs {amount:,.0f} has been pending for a while. "
+            f"Please settle this today. "
+            f"A payment link is being sent via SMS. Thank you."
         ),
         "urgent_notice": (
-            f"Namaste {debtor_name}! "
-            f"Rs {amount:,.0f} ka payment bahut time se pending hai. "
-            f"Yeh last reminder hai. "
-            f"Kripya turant payment karein. Link SMS mein hai."
+            f"Hello {debtor_name}! "
+            f"Your payment of Rs {amount:,.0f} has been overdue for a long time. "
+            f"This is a final reminder. "
+            f"Please make the payment immediately. The link is in your SMS."
         ),
     }
     return scripts.get(tone, scripts["polite_follow_up"])
@@ -158,7 +158,7 @@ async def _make_twilio_call(
             </Say>
             <Pause length="2"/>
             <Say language="hi-IN" voice="Polly.Aditi">
-                Agar aapko koi samasya hai, toh kripya {TWILIO_PHONE_NUMBER} par call karein.
+                If you have any issues, please call {TWILIO_PHONE_NUMBER}.
             </Say>
         </Response>
         """
@@ -172,7 +172,7 @@ async def _make_twilio_call(
         # Also send SMS with payment link
         if payment_link:
             client.messages.create(
-                body=f"Namaste! Aapke Rs pending hain. Pay karein: {payment_link}",
+                body=f"Hello! You have pending dues. Please pay: {payment_link}",
                 to=phone,
                 from_=TWILIO_PHONE_NUMBER,
             )

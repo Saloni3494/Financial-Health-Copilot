@@ -40,13 +40,13 @@ interface NLUResult {
 }
 
 const QUICK_COMMANDS = [
-  { text: "Rs 5000 rent diya", label: "📝 Log Expense", description: "Logs rent as expense, updates P&L, recalculates margin" },
-  { text: "Sharma ji ka 8000 udhari", label: "📋 Create Udhari", description: "Creates udhari entry, schedules collection, generates payment link" },
-  { text: "aaj kaisa raha", label: "📊 Daily Summary", description: "AI generates full day summary with Hindi response" },
-  { text: "sab ko remind karo", label: "📤 Send Reminders", description: "AI selects optimal channel/tone/timing per debtor using Thompson Sampling RL" },
-  { text: "Rs 800 cash mila", label: "💰 Cash Income", description: "Records cash income, updates dashboard live via WebSocket" },
-  { text: "Tripathi ji ne 5000 wapas kiya", label: "✅ Settle Udhari", description: "Settles udhari, records income, updates PayScore" },
-  { text: "profit kitna hua", label: "📈 Check Profit", description: "Queries today's P&L and returns Hindi summary" },
+  { text: "Paid 5000 rent", label: "📝 Log Expense", description: "Logs rent as expense, updates P&L, recalculates margin" },
+  { text: "8000 loan to Sharma", label: "📋 Create Udhari", description: "Creates udhari entry, schedules collection, generates payment link" },
+  { text: "how was today", label: "📊 Daily Summary", description: "AI generates full day summary with English response" },
+  { text: "remind everyone", label: "📤 Send Reminders", description: "AI selects optimal channel/tone/timing per debtor using Thompson Sampling RL" },
+  { text: "Received 800 cash", label: "💰 Cash Income", description: "Records cash income, updates dashboard live via WebSocket" },
+  { text: "Tripathi returned 5000", label: "✅ Settle Udhari", description: "Settles udhari, records income, updates PayScore" },
+  { text: "how much profit", label: "📈 Check Profit", description: "Queries today's P&L and returns English summary" },
 ];
 
 // ---- Hackathon Demo Walkthrough Steps ----
@@ -654,14 +654,14 @@ export default function DemoControlPanel() {
             <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">🤖 AI Agent Pipeline — How Vyapaar GrowthOS Processes Commands</h3>
             <div className="space-y-2">
               {[
-                { step: 1, label: "Voice / Text Input", detail: "Merchant speaks or types a command in Hindi", tech: "Browser MediaRecorder API" },
-                { step: 2, label: "Speech-to-Text (STT)", detail: "Hindi audio → text transcription", tech: "IndicWhisper (AI4Bharat) via Groq Whisper API | 12% WER | ~200ms" },
+                { step: 1, label: "Voice / Text Input", detail: "User speaks or types a command in English", tech: "Browser MediaRecorder API" },
+                { step: 2, label: "Speech-to-Text (STT)", detail: "Speech audio → text transcription", tech: "Groq Whisper API | 12% WER | ~200ms" },
                 { step: 3, label: "Intent Classification", detail: "Identifies what the merchant wants to do", tech: "Groq LLM (Llama 3.3 70B) | 12 intent classes | ~50ms" },
-                { step: 4, label: "Entity Extraction (NER)", detail: "Extracts amounts, names, categories from text", tech: "Groq LLM + Hindi Numeral Parser | handles 'dedh lakh' = 1,50,000" },
+                { step: 4, label: "Entity Extraction (NER)", detail: "Extracts amounts, names, categories from text", tech: "Groq LLM + Numeral Parser" },
                 { step: 5, label: "Master Agent (Orchestrator)", detail: "Routes to the right specialist agent", tech: "LangGraph State Machine | 7-phase pipeline | Constitutional AI guardrails" },
-                { step: 6, label: "Specialist Agent Execution", detail: "Domain-specific action taken", tech: nluResult?.intent === "add_expense" ? "Action Router → Supabase INSERT → WebSocket emit" : nluResult?.intent === "add_udhari" ? "Collection Agent (Thompson Sampling RL) → Schedule reminders" : nluResult?.intent === "get_today_summary" ? "CashFlow Agent → Aggregate P&L → Generate Hindi summary" : "Action Router → DB operation → Event emission" },
+                { step: 6, label: "Specialist Agent Execution", detail: "Domain-specific action taken", tech: nluResult?.intent === "add_expense" ? "Action Router → Supabase INSERT → WebSocket emit" : nluResult?.intent === "add_udhari" ? "Collection Agent (Thompson Sampling RL) → Schedule reminders" : nluResult?.intent === "get_today_summary" ? "CashFlow Agent → Aggregate P&L → Generate summary" : "Action Router → DB operation → Event emission" },
                 { step: 7, label: "Database + Real-time Update", detail: "Data persisted, dashboard notified instantly", tech: "Supabase PostgreSQL + Redis Pub/Sub + Socket.IO WebSocket" },
-                { step: 8, label: "Hindi Response + TTS", detail: "AI generates Hindi response, optionally speaks it", tech: "Groq LLM (Muneem personality) + Sarvam Bulbul TTS" },
+                { step: 8, label: "English Response + TTS", detail: "AI generates English response, optionally speaks it", tech: "Groq LLM (Copilot personality) + Sarvam TTS" },
               ].map((s) => {
                 const isActive = pipelineActive && s.step <= pipelineStep;
                 const isComplete = pipelineStep >= 8 && !processing;

@@ -23,10 +23,10 @@ settings = get_settings()
 
 SPENDING_RECOMMENDATION_PROMPT = """You are the AI Financial Health Copilot.
 
-Your task: Generate a concise Hindi/Hinglish recommendation based on the spending analysis.
+Your task: Generate a concise English recommendation based on the spending analysis.
 
 RULES:
-1. Use Hindi (Devanagari) with common English financial terms (budget, expenses, SIP)
+1. Use clear, conversational English.
 2. Be specific — mention categories, amounts
 3. Be actionable — tell the user EXACTLY what to do
 4. Keep each recommendation under 50 words
@@ -141,7 +141,7 @@ def _detect_unusual_spending(expenses: list[dict], today: date) -> list[dict]:
                     "date": rt.get("date"),
                     "amount": amt,
                     "avg": avg,
-                    "reason": f"{category} mein unusual bada kharcha"
+                    "reason": f"Unusually large expense in {category}"
                 })
     return spikes
 
@@ -177,21 +177,21 @@ async def generate_spending_recommendations(merchant_id: str) -> list[str]:
         return ["Data load error."]
 
     if not transactions:
-        return ["Abhi koi transaction data nahi hai."]
+        return ["No transaction data available yet."]
 
     analysis = await analyze_spending(merchant_id, transactions)
     
     recs = []
     for spike in analysis.get("spikes", [])[:2]:
-        recs.append(f"⚠️ {spike['category']} mein unusual kharcha hua (Rs {spike['amount']:,.0f}).\n📈 EXPECTED IMPACT: Limit this to save Rs {(spike['amount'] - spike['avg']):,.0f}.")
+        recs.append(f"⚠️ Unusually high expense in {spike['category']} (Rs {spike['amount']:,.0f}).\n📈 EXPECTED IMPACT: Limit this to save Rs {(spike['amount'] - spike['avg']):,.0f}.")
     
     for trend in analysis.get("trends", []):
         if trend["trend"] == "increasing":
             impact = trend["recent_30d"] - trend["previous_period_normalized"]
-            recs.append(f"🔶 {trend['category']} ka kharcha badh raha hai (+{trend['change_percent']:.0f}%).\n📈 EXPECTED IMPACT: Control this to save Rs {impact:,.0f} per month.")
+            recs.append(f"🔶 Spending in {trend['category']} is increasing (+{trend['change_percent']:.0f}%).\n📈 EXPECTED IMPACT: Control this to save Rs {impact:,.0f} per month.")
             break
             
     if not recs:
-        recs.append("✅ Spending patterns stable hain.\n📈 EXPECTED IMPACT: Continue this to maintain healthy cash flow.")
+        recs.append("✅ Spending patterns are stable.\n📈 EXPECTED IMPACT: Continue this to maintain healthy cash flow.")
         
     return recs

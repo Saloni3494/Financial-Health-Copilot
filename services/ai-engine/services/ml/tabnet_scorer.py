@@ -26,7 +26,7 @@ class PayScoreResult:
     feature_breakdown: dict          # {group: score contribution}
     top_positive_factors: list       # Features helping the score
     top_negative_factors: list       # Features hurting the score
-    improvement_tips: list           # Hindi tips to improve score
+    improvement_tips: list           # English tips to improve score
     credit_eligibility: dict         # Loan amount + rate at current score
     score_change: int                # Delta from last calculation
     percentile: int                  # Percentile among all merchants
@@ -43,16 +43,16 @@ FEATURE_DEFINITIONS = {
         "name_hindi": "Revenue ki stability",
         "group": "consistency",
         "description": "Lower coefficient of variation = more stable business",
-        "positive_tip": "Aapki revenue bahut stable hai — lenders ko ye pasand aata hai",
-        "negative_tip": "Revenue mein utaar-chadhaav zyada hai — consistent sales pe focus karein",
+        "positive_tip": "Your revenue is very stable — lenders like this",
+        "negative_tip": "High revenue fluctuation — focus on consistent sales",
     },
     "zero_revenue_days_pct": {
         "name": "Active Business Days",
         "name_hindi": "Active dino ka percentage",
         "group": "consistency",
         "description": "Percentage of days with zero transactions",
-        "positive_tip": "Rozana sale ho rahi hai — bahut accha",
-        "negative_tip": "Kai din zero sale hai — regular khulne se score badhega",
+        "positive_tip": "Sales happening daily — excellent",
+        "negative_tip": "Zero sales on multiple days — regular opening will improve score",
     },
     "weekly_pattern_strength": {
         "name": "Weekly Predictability",
@@ -71,8 +71,8 @@ FEATURE_DEFINITIONS = {
         "name_hindi": "Payment modes ka variety",
         "group": "consistency",
         "description": "Shannon entropy of payment modes (UPI, card, cash, wallet)",
-        "positive_tip": "UPI, card, cash sab accept karte hain — digital adoption acchi hai",
-        "negative_tip": "Sirf cash ya sirf UPI — zyada payment modes accept karein",
+        "positive_tip": "Accepting UPI, cards, and cash — good digital adoption",
+        "negative_tip": "Only cash or only UPI — accept more payment modes",
     },
     "daily_revenue_stability": {
         "name": "Daily Revenue Stability",
@@ -90,8 +90,8 @@ FEATURE_DEFINITIONS = {
         "name": "3-Month Revenue Trend",
         "name_hindi": "3 mahine ka revenue trend",
         "group": "growth",
-        "positive_tip": "Revenue badh raha hai — growth trajectory acchi hai",
-        "negative_tip": "Revenue gir raha hai — naye customers laane pe focus karein",
+        "positive_tip": "Revenue is increasing — good growth trajectory",
+        "negative_tip": "Revenue is falling — focus on acquiring new customers",
     },
     "revenue_6m_slope": {
         "name": "6-Month Revenue Trend",
@@ -102,8 +102,8 @@ FEATURE_DEFINITIONS = {
         "name": "New Customer Growth",
         "name_hindi": "Naye customer growth",
         "group": "growth",
-        "positive_tip": "Naye customers aa rahe hain — business grow ho raha hai",
-        "negative_tip": "Naye customers kam aa rahe — marketing badhayein",
+        "positive_tip": "New customers are coming — business is growing",
+        "negative_tip": "Few new customers — increase marketing",
     },
     "aov_trend": {
         "name": "Average Order Value Trend",
@@ -114,8 +114,8 @@ FEATURE_DEFINITIONS = {
         "name": "Digital Payment Growth",
         "name_hindi": "Digital payment ka trend",
         "group": "growth",
-        "positive_tip": "Digital payments badh rahe hain — 5 aur customers ko UPI pe le aao → +2 points",
-        "negative_tip": "Digital payments kam hain — UPI encourage karein → score badhega",
+        "positive_tip": "Digital payments are increasing — get 5 more customers on UPI → +2 points",
+        "negative_tip": "Low digital payments — encourage UPI → score will improve",
     },
     "mom_revenue_growth": {
         "name": "Month-over-Month Growth",
@@ -133,8 +133,8 @@ FEATURE_DEFINITIONS = {
         "name": "Customer Concentration Risk",
         "name_hindi": "Ek customer pe dependency",
         "group": "risk",
-        "positive_tip": "Revenue achhe se spread hai — kisi ek customer pe dependent nahi",
-        "negative_tip": "Top 3 customers se zyada revenue aata hai — diversify karein",
+        "positive_tip": "Revenue is well diversified — not dependent on a single customer",
+        "negative_tip": "Most revenue comes from top 3 customers — please diversify",
     },
     "seasonal_vulnerability": {
         "name": "Seasonal Vulnerability",
@@ -150,15 +150,15 @@ FEATURE_DEFINITIONS = {
         "name": "Udhari to Revenue Ratio",
         "name_hindi": "Udhari ka revenue se ratio",
         "group": "risk",
-        "positive_tip": "Udhari control mein hai — accha cash flow management",
-        "negative_tip": "Udhari bahut zyada hai — Rs 50K neeche laao → +4 points",
+        "positive_tip": "Credit is under control — good cash flow management",
+        "negative_tip": "Credit given is too high — bring it below Rs 50K → +4 points",
     },
     "udhari_collection_rate": {
         "name": "Udhari Collection Rate",
         "name_hindi": "Udhari collection rate",
         "group": "risk",
-        "positive_tip": "Achhi collection rate — paisa wapas aa raha hai",
-        "negative_tip": "Collection rate kam hai — Vyapaar GrowthOS se auto-reminders bhejein",
+        "positive_tip": "Good collection rate — money is being recovered",
+        "negative_tip": "Collection rate is low — send auto-reminders via Financial Copilot",
     },
     "bad_debt_ratio": {
         "name": "Bad Debt History",
@@ -181,8 +181,8 @@ FEATURE_DEFINITIONS = {
         "name": "GST Filing Timeliness",
         "name_hindi": "GST time pe file karna",
         "group": "discipline",
-        "positive_tip": "GST hamesha time pe file hota hai — bahut accha",
-        "negative_tip": "GST late file hua — next month time pe file karo → +3 points",
+        "positive_tip": "GST is always filed on time — very good",
+        "negative_tip": "GST filed late — file on time next month → +3 points",
     },
     "itc_mismatch_freq": {
         "name": "ITC Mismatch Frequency",
@@ -198,8 +198,8 @@ FEATURE_DEFINITIONS = {
         "name": "Expense Logging Regularity",
         "name_hindi": "Rozana kharcha record karna",
         "group": "discipline",
-        "positive_tip": "Rozana expenses log kar rahe hain — financial discipline acchi hai",
-        "negative_tip": "Kharcha daily voice se daalo — record complete hoga → +1 point",
+        "positive_tip": "Daily expenses are being logged — good financial discipline",
+        "negative_tip": "Add expenses daily using voice — complete your records → +1 point",
     },
     "digital_record_completeness": {
         "name": "Digital Record Quality",
@@ -207,8 +207,8 @@ FEATURE_DEFINITIONS = {
         "group": "discipline",
     },
     "platform_engagement": {
-        "name": "Vyapaar GrowthOS Usage",
-        "name_hindi": "Vyapaar GrowthOS ka use",
+        "name": "Financial Copilot Usage",
+        "name_hindi": "Financial Copilot ka use",
         "group": "discipline",
     },
 
@@ -423,7 +423,7 @@ def calculate_payscore(features: dict) -> PayScoreResult:
                                 "name_hindi": fdef.get("name_hindi", ""), "value": round(fval, 2),
                                 "tip": fdef["negative_tip"]})
 
-    # Improvement tips (Hindi)
+    # Improvement tips (English)
     tips = [f["tip"] for f in top_negative[:4]]
 
     # Credit eligibility

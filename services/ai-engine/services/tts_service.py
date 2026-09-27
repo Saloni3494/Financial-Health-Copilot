@@ -19,12 +19,12 @@ from config import get_settings
 settings = get_settings()
 
 
-async def synthesize_hindi(text: str, voice: str = "meera") -> Optional[bytes]:
+async def synthesize_speech(text: str, voice: str = "meera") -> Optional[bytes]:
     """
-    Convert Hindi text to speech audio.
+    Convert English text to speech audio.
 
     Args:
-        text: Hindi text to synthesize
+        text: English text to synthesize
         voice: Voice model ("meera" = female, "arvind" = male)
 
     Returns:
@@ -43,7 +43,7 @@ async def synthesize_hindi(text: str, voice: str = "meera") -> Optional[bytes]:
                 },
                 json={
                     "inputs": [text],
-                    "target_language_code": "hi-IN",
+                    "target_language_code": "en-IN",
                     "speaker": voice,
                     "pitch": 0,
                     "pace": 1.0,
@@ -74,30 +74,30 @@ async def generate_voice_confirmation(
     summary: Optional[str] = None,
 ) -> str:
     """
-    Generate Hindi voice confirmation text for Soundbox speaker.
+    Generate English voice confirmation text for Soundbox speaker.
 
     Returns text (synthesis done separately or on frontend).
     """
     confirmations = {
-        "income_added": f"Rs {amount:,.0f} income note kar liya." if amount else "Income note kar liya.",
-        "expense_added": f"Rs {amount:,.0f} kharcha mein daal diya." if amount else "Kharcha note kar liya.",
-        "udhari_created": f"{person} ka Rs {amount:,.0f} udhari note kar liya. Remind karoonga." if person and amount else "Udhari note kar liya.",
-        "udhari_settled": f"{person} ne Rs {amount:,.0f} wapas kar diya. Udhari settle ho gaya." if person and amount else "Udhari settle ho gaya.",
-        "reminder_sent": f"{person} ko reminder bhej diya." if person else "Reminders bhej diye.",
-        "query_response": summary or "Ye raha aapka hisaab.",
+        "income_added": f"Rs {amount:,.0f} income recorded." if amount else "Income recorded.",
+        "expense_added": f"Rs {amount:,.0f} added to expenses." if amount else "Expense recorded.",
+        "udhari_created": f"Credit of Rs {amount:,.0f} for {person} recorded. I will remind you." if person and amount else "Credit recorded.",
+        "udhari_settled": f"{person} returned Rs {amount:,.0f}. Credit settled." if person and amount else "Credit settled.",
+        "reminder_sent": f"Reminder sent to {person}." if person else "Reminders sent.",
+        "query_response": summary or "Here is your account.",
     }
 
-    return confirmations.get(action_type, "Note kar liya.")
+    return confirmations.get(action_type, "Recorded.")
 
 
 # Pre-recorded audio phrases for demo (fallback when TTS is unavailable)
 DEMO_AUDIO_PHRASES = {
-    "greeting": "Namaste! Main aapka Vyapaar GrowthOS hoon.",
-    "rent_logged": "Rs 5,000 rent mein daal diya. Aaj ka total kharcha Rs 12,400.",
-    "income_received": "Paytm se payment mila. Income update ho gayi.",
-    "udhari_created": "Udhari note kar liya. 3 din baad remind karoonga.",
-    "udhari_collected": "Payment aa gaya! Udhari settle ho gaya.",
-    "reminders_sent": "3 reminders bhej diye. Paytm link bhi bheja hai.",
-    "day_summary": "Aaj Rs 34,500 ki sale hui. Kharcha Rs 12,400. Munafa Rs 22,100. Margin 64 percent.",
-    "profit_negative": "Aaj ka profit negative ho gaya. Udhari collection tez karein?",
+    "greeting": "Hello! I am your Financial Copilot.",
+    "rent_logged": "Added Rs 5,000 to rent. Today's total expenses are Rs 12,400.",
+    "income_received": "Received payment via Paytm. Income updated.",
+    "udhari_created": "Credit recorded. I will remind you in 3 days.",
+    "udhari_collected": "Payment received! Credit settled.",
+    "reminders_sent": "Sent 3 reminders along with the Paytm link.",
+    "day_summary": "Today's sales are Rs 34,500. Expenses Rs 12,400. Profit Rs 22,100. Margin is 64 percent.",
+    "profit_negative": "Today's profit is negative. Should we speed up credit collection?",
 }

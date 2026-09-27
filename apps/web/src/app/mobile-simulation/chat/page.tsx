@@ -126,7 +126,7 @@ export default function ChatPage() {
         const muneemMsg: ChatMessage = {
           id: crypto.randomUUID(),
           role: "muneem",
-          text: data.reply || data.response_hindi || data.response || "Samajh nahi aaya, phir boliye.",
+          text: data.reply || data.response_hindi || data.response || "Sorry, I didn't understand. Please try again.",
           action: data.is_action ? data.action_taken : undefined,
           isAction: data.is_action || false,
           audioUrl: data.audio_url || undefined,
@@ -212,7 +212,7 @@ export default function ChatPage() {
         const muneemMsg: ChatMessage = {
           id: crypto.randomUUID(),
           role: "muneem",
-          text: chatData.reply || chatData.response_hindi || "Samajh nahi aaya.",
+          text: chatData.reply || chatData.response_hindi || "Sorry, I didn't understand.",
           action: chatData.is_action ? chatData.action_taken : undefined,
           isAction: chatData.is_action || false,
           audioUrl: chatData.audio_url || undefined,

@@ -54,10 +54,10 @@ export function VoiceInput({
   };
 
   const stateLabels: Record<VoiceState, string> = {
-    idle: "Bol ke batao",
-    recording: "Sun raha hoon...",
-    processing: "Samajh raha hoon...",
-    result: "Ho gaya!",
+    idle: "Tap to speak",
+    recording: "Listening...",
+    processing: "Understanding...",
+    result: "Done!",
   };
 
   return (

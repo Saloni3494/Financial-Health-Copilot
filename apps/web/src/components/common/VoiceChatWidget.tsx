@@ -122,7 +122,7 @@ export function VoiceChatWidget() {
             data.response_hindi ||
             data.response ||
             data.reply ||
-            "Samajh nahi aaya.",
+            "I didn't understand.",
           action: data.action_summary || data.action || undefined,
           timestamp: Date.now(),
         });
@@ -183,7 +183,7 @@ export function VoiceChatWidget() {
             data.response_hindi ||
             data.response ||
             data.reply ||
-            "Samajh nahi aaya.",
+            "I didn't understand.",
           action: data.action_summary || data.action || undefined,
           timestamp: Date.now(),
         });

@@ -257,7 +257,7 @@ class VyapaarOrchestrator:
             logger.exception("Orchestrator error")
             state.errors.append(str(e))
             state.phase = AgentPhase.ERROR
-            state.response_hindi = "Maaf kijiye, kuch gadbad ho gayi. Dobara koshish karein."
+            state.response_hindi = "Sorry, something went wrong. Please try again."
 
         state.processing_time_ms = (time.time() - start_time) * 1000
         return state
@@ -351,7 +351,7 @@ class VyapaarOrchestrator:
         return state
 
     async def _phase_synthesize(self, state: AgentState) -> AgentState:
-        """Generate Hindi response using Master Agent"""
+        """Generate English response using Master Agent"""
         state.phase = AgentPhase.SYNTHESIZE
 
         from services.agents.master_agent import generate_response
@@ -533,7 +533,7 @@ class VyapaarOrchestrator:
                 "event": "alert",
                 "data": {
                     "type": "negative_profit",
-                    "message_hindi": f"Aaj ka profit negative ho gaya: Rs {abs(profit):,.0f}. Udhari collect karein?",
+                    "message_hindi": f"Today's profit is negative: Rs {abs(profit):,.0f}. Start collecting dues?",
                     "severity": "critical",
                 },
             })
@@ -612,7 +612,7 @@ class VyapaarOrchestrator:
             response = await self.groq.chat.completions.create(
                 model=settings.groq_model,
                 messages=[
-                    {"role": "system", "content": "You are Vyapaar GrowthOS, a helpful Hindi-speaking business assistant. Respond concisely in Hindi."},
+                    {"role": "system", "content": "You are the AI Financial Copilot, a helpful assistant. Respond concisely in English."},
                     {"role": "user", "content": state.input_text or state.transcript},
                 ],
                 temperature=0.7,
@@ -620,7 +620,7 @@ class VyapaarOrchestrator:
             )
             return {"response": response.choices[0].message.content.strip()}
         except Exception:
-            return {"response": "Ji, main sun raha hoon. Kaise madad kar sakta hoon?"}
+            return {"response": "Yes, I'm listening. How can I help you?"}
 
 
 # ============================================

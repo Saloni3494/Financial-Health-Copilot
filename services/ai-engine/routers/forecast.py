@@ -23,50 +23,27 @@ router = APIRouter()
 # ---------------------------------------------------------------------------
 
 INDIAN_FESTIVALS = [
-    # 2026 festivals (April onwards for current relevance)
-    {"date": "2026-04-06", "name": "Ram Navami", "name_hi": "राम नवमी", "impact_pct": 60, "category": "religious"},
-    {"date": "2026-04-14", "name": "Baisakhi", "name_hi": "बैसाखी", "impact_pct": 40, "category": "harvest"},
-    {"date": "2026-04-14", "name": "Ambedkar Jayanti", "name_hi": "अम्बेडकर जयंती", "impact_pct": 10, "category": "national"},
-    {"date": "2026-04-21", "name": "Mahavir Jayanti", "name_hi": "महावीर जयंती", "impact_pct": 15, "category": "religious"},
-    {"date": "2026-04-26", "name": "Akshaya Tritiya", "name_hi": "अक्षय तृतीया", "impact_pct": 80, "category": "shopping"},
-    {"date": "2026-05-12", "name": "Buddha Purnima", "name_hi": "बुद्ध पूर्णिमा", "impact_pct": 15, "category": "religious"},
-    {"date": "2026-05-25", "name": "Eid ul-Fitr", "name_hi": "ईद उल-फ़ित्र", "impact_pct": 50, "category": "religious"},
-    {"date": "2026-06-23", "name": "Rath Yatra", "name_hi": "रथ यात्रा", "impact_pct": 30, "category": "religious"},
-    {"date": "2026-07-07", "name": "Guru Purnima", "name_hi": "गुरु पूर्णिमा", "impact_pct": 20, "category": "religious"},
-    {"date": "2026-08-08", "name": "Raksha Bandhan", "name_hi": "रक्षा बंधन", "impact_pct": 70, "category": "shopping"},
-    {"date": "2026-08-15", "name": "Independence Day", "name_hi": "स्वतंत्रता दिवस", "impact_pct": 25, "category": "national"},
-    {"date": "2026-08-16", "name": "Janmashtami", "name_hi": "जन्माष्टमी", "impact_pct": 45, "category": "religious"},
-    {"date": "2026-09-06", "name": "Ganesh Chaturthi", "name_hi": "गणेश चतुर्थी", "impact_pct": 55, "category": "religious"},
-    {"date": "2026-10-01", "name": "Navratri Start", "name_hi": "नवरात्रि शुरू", "impact_pct": 60, "category": "shopping"},
-    {"date": "2026-10-10", "name": "Dussehra", "name_hi": "दशहरा", "impact_pct": 70, "category": "shopping"},
-    {"date": "2026-10-25", "name": "Dhanteras", "name_hi": "धनतेरस", "impact_pct": 90, "category": "shopping"},
-    {"date": "2026-10-27", "name": "Diwali", "name_hi": "दीवाली", "impact_pct": 100, "category": "shopping"},
-    {"date": "2026-10-28", "name": "Govardhan Puja", "name_hi": "गोवर्धन पूजा", "impact_pct": 40, "category": "religious"},
-    {"date": "2026-10-29", "name": "Bhai Dooj", "name_hi": "भाई दूज", "impact_pct": 50, "category": "shopping"},
-    {"date": "2026-11-17", "name": "Guru Nanak Jayanti", "name_hi": "गुरु नानक जयंती", "impact_pct": 25, "category": "religious"},
-    {"date": "2026-12-25", "name": "Christmas", "name_hi": "क्रिसमस", "impact_pct": 35, "category": "shopping"},
-    {"date": "2027-01-14", "name": "Makar Sankranti", "name_hi": "मकर संक्रांति", "impact_pct": 40, "category": "harvest"},
-    {"date": "2027-01-26", "name": "Republic Day", "name_hi": "गणतंत्र दिवस", "impact_pct": 20, "category": "national"},
-    {"date": "2027-03-14", "name": "Holi", "name_hi": "होली", "impact_pct": 60, "category": "shopping"},
+    # 2026 financial events
+    {"date": "2026-10-01", "name": "Salary Credit", "name_hi": "Salary Credit", "impact_pct": 100, "category": "income"},
+    {"date": "2026-10-05", "name": "Rent Payment", "name_hi": "Rent Payment", "impact_pct": -40, "category": "expense"},
+    {"date": "2026-10-15", "name": "Credit Card Bill", "name_hi": "Credit Card Bill", "impact_pct": -30, "category": "expense"},
+    {"date": "2026-10-25", "name": "EMI Deduction", "name_hi": "EMI Deduction", "impact_pct": -20, "category": "expense"},
+    {"date": "2026-11-01", "name": "Salary Credit", "name_hi": "Salary Credit", "impact_pct": 100, "category": "income"},
+    {"date": "2026-11-05", "name": "Rent Payment", "name_hi": "Rent Payment", "impact_pct": -40, "category": "expense"},
+    {"date": "2026-11-15", "name": "Credit Card Bill", "name_hi": "Credit Card Bill", "impact_pct": -30, "category": "expense"},
+    {"date": "2026-11-25", "name": "EMI Deduction", "name_hi": "EMI Deduction", "impact_pct": -20, "category": "expense"},
+    {"date": "2026-12-01", "name": "Salary Credit + Bonus", "name_hi": "Salary and Bonus", "impact_pct": 150, "category": "income"},
+    {"date": "2026-12-05", "name": "Rent Payment", "name_hi": "Rent Payment", "impact_pct": -40, "category": "expense"},
+    {"date": "2026-12-15", "name": "Credit Card Bill", "name_hi": "Credit Card Bill", "impact_pct": -30, "category": "expense"},
 ]
 
-# Festival-specific inventory suggestions
+# Event-specific prep suggestions
 FESTIVAL_INVENTORY: dict[str, list[str]] = {
-    "Ram Navami": ["Puja items", "Yellow/orange sarees", "Pooja thali sets"],
-    "Akshaya Tritiya": ["Gold jewelry", "Wedding sarees", "Gift sets"],
-    "Raksha Bandhan": ["Rakhi sets", "Gift packs", "Sweets packaging"],
-    "Navratri Start": ["Chaniya choli", "Navratri special items", "Garba accessories"],
-    "Diwali": ["Festive sarees", "Home decor", "Gift hampers", "Diyas"],
-    "Dussehra": ["Festive wear", "Puja items"],
-    "Eid ul-Fitr": ["Festive kurtas", "Embroidered fabric", "Gift items"],
-    "Holi": ["White clothes", "Color-safe fabric", "Festive wear"],
-    "Ganesh Chaturthi": ["Ganesh idols", "Puja items", "Modak packaging"],
-    "Dhanteras": ["Gold jewelry", "Utensils", "Electronics"],
-    "Bhai Dooj": ["Gift sets", "Sweets packaging", "Tikka items"],
-    "Janmashtami": ["Puja items", "Makhan-mishri sets", "Krishna decor"],
-    "Baisakhi": ["Festive wear", "Seasonal items", "Harvest decor"],
-    "Christmas": ["Gift items", "Decorations", "Party supplies"],
-    "Makar Sankranti": ["Kite supplies", "Til-gur items", "Festive wear"],
+    "Salary Credit": ["Invest 20% immediately", "Clear pending dues"],
+    "Rent Payment": ["Ensure sufficient bank balance", "Transfer from savings if needed"],
+    "Credit Card Bill": ["Review statements for errors", "Pay full amount to avoid interest"],
+    "EMI Deduction": ["Maintain EMI balance", "Check loan statement"],
+    "Salary Credit + Bonus": ["Maximize investments", "Prepay high-interest loans"],
 }
 
 # Pre-build a lookup: date_str -> list of festivals on that date
@@ -76,10 +53,8 @@ for _f in INDIAN_FESTIVALS:
 
 # Preparation tips by category
 _PREP_TIPS: dict[str, str] = {
-    "shopping": "{name} ({date_str}) ke liye stock taiyaar karein. {impact_pct}% zyada bikri expected.",
-    "religious": "{name} ({date_str}) pe puja items aur special stock ready rakhein. {impact_pct}% zyada bikri expected.",
-    "harvest": "{name} ({date_str}) pe seasonal items ka stock badhayein. {impact_pct}% zyada bikri expected.",
-    "national": "{name} ({date_str}) pe offers aur discounts rakhein. {impact_pct}% zyada footfall expected.",
+    "income": "{name} ({date_str}) is upcoming. Your savings are expected to increase.",
+    "expense": "{name} ({date_str}) payment is due. Ensure sufficient bank balance.",
 }
 
 
@@ -195,10 +170,12 @@ def _simple_forecast(
             festival_name = best["name"]
             festival_name_hi = best["name_hi"]
             festival_impact_pct = best["impact_pct"]
-            # Apply festival boost to income
-            day_income *= (1 + festival_impact_pct / 100)
-            # Expenses also rise slightly during festivals (more stock, staff overtime)
-            day_expense *= (1 + festival_impact_pct / 300)
+            
+            # Apply financial event boost
+            if best["category"] == "income":
+                day_income += (avg_income * festival_impact_pct / 100)
+            else:
+                day_expense += (avg_expense * abs(festival_impact_pct) / 100)
 
         day_income = round(day_income, 2)
         day_expense = round(day_expense, 2)
@@ -250,7 +227,7 @@ def _simple_forecast(
 
     # Festival prep recommendations (next 3 upcoming)
     for fest in upcoming_festivals[:3]:
-        tip_template = _PREP_TIPS.get(fest["category"], _PREP_TIPS["shopping"])
+        tip_template = _PREP_TIPS.get(fest["category"], _PREP_TIPS["income"])
         tip_text = tip_template.format(
             name=fest["name"],
             date_str=fest["date"],
@@ -268,7 +245,7 @@ def _simple_forecast(
         first_crunch = cash_crunch_days[0]
         recommendations.append({
             "type": "cash_crunch",
-            "text_hi": f"{crunch_count} din aisa aayega jab kharcha income se zyada hoga. Pehla din: {first_crunch}. Reserve rakhein.",
+            "text_hi": f"For {crunch_count} days, expenses will exceed income. First occurrence: {first_crunch}. Please maintain reserves.",
             "impact": round(avg_expense - avg_income, 2) if avg_expense > avg_income else 0,
         })
 
@@ -278,7 +255,7 @@ def _simple_forecast(
         monthly_surplus = round(avg_net * 30, 2)
         recommendations.append({
             "type": "savings",
-            "text_hi": f"Har mahine Rs {round(monthly_surplus)} bacha sakte hain. FD ya mutual fund mein daalein.",
+            "text_hi": f"You can save Rs {round(monthly_surplus)} every month. Consider investing in FDs or Mutual Funds.",
             "impact": monthly_surplus,
         })
 
@@ -331,7 +308,7 @@ def _build_data_driven_recommendations(
         drop_pct = round((1 - recent_7d_avg / avg_daily) * 100)
         recommendations.append({
             "type": "income_drop",
-            "text_hi": f"Aapki avg daily income Rs {avg_daily:,.0f} hai. Pichle hafte {drop_pct}% kam hui. Kya hua?",
+            "text_hi": f"Your avg daily income is Rs {avg_daily:,.0f}. It has dropped by {drop_pct}% in the last week.",
             "impact": round(avg_daily - recent_7d_avg) * 7,
         })
 
@@ -348,7 +325,7 @@ def _build_data_driven_recommendations(
         monthly_top = round(top_expense_amt / max(num_days, 1) * 30)
         recommendations.append({
             "type": "expense_alert",
-            "text_hi": f"Sabse zyada kharcha: {top_expense_cat} (Rs {monthly_top:,.0f}/month).",
+            "text_hi": f"Highest expense category: {top_expense_cat} (Rs {monthly_top:,.0f}/month).",
             "impact": monthly_top,
         })
 
@@ -358,7 +335,7 @@ def _build_data_driven_recommendations(
     days_of_cash = round(cash_on_hand / max(avg_daily_expense, 1))
     recommendations.append({
         "type": "cash_runway",
-        "text_hi": f"Cash position: Rs {cash_on_hand:,.0f}. {days_of_cash} din ka kharcha cover kar sakta hai.",
+        "text_hi": f"Cash position: Rs {cash_on_hand:,.0f}. This covers {days_of_cash} days of expenses.",
         "impact": cash_on_hand,
     })
 
@@ -382,7 +359,7 @@ def _build_data_driven_recommendations(
                 buffer_days = round(remaining / max(avg_daily_expense, 1))
                 recommendations.append({
                     "type": "collection_opportunity",
-                    "text_hi": f"Agar {u['debtor_name']} ka Rs {remaining:,.0f} aa jaye toh {buffer_days} din ka buffer ban jayega.",
+                    "text_hi": f"If you collect Rs {remaining:,.0f} from {u['debtor_name']}, it creates a buffer of {buffer_days} days.",
                     "impact": remaining,
                 })
     except Exception:
@@ -430,13 +407,13 @@ async def cash_crunch_alert(merchant_id: str):
     # Determine urgency
     if runway_days <= 3:
         urgency = "critical"
-        urgency_hi = "BAHUT URGENT"
+        urgency_hi = "VERY URGENT"
     elif runway_days <= 7:
         urgency = "high"
         urgency_hi = "URGENT"
     elif runway_days <= 14:
         urgency = "medium"
-        urgency_hi = "DHYAN DEIN"
+        urgency_hi = "ATTENTION"
     else:
         urgency = "low"
         urgency_hi = "SAFE"
@@ -444,21 +421,21 @@ async def cash_crunch_alert(merchant_id: str):
     # Build suggestion
     suggestions = []
     if total_collectible > 0:
-        suggestions.append(f"Rs {total_collectible:,.0f} udhari collect karein")
+        suggestions.append(f"Collect pending dues of Rs {total_collectible:,.0f}")
         for d in top_debtors:
             remaining = float(d.get("amount", 0)) - float(d.get("amount_paid", 0))
             suggestions.append(f"  - {d.get('debtor_name', 'Customer')}: Rs {remaining:,.0f}")
     if daily_expense > daily_income:
         cut_needed = round((daily_expense - daily_income) * 30, 2)
-        suggestions.append(f"Monthly kharcha Rs {cut_needed:,.0f} kam karein")
+        suggestions.append(f"Reduce monthly expenses by Rs {cut_needed:,.0f}")
 
     alert_hi = f"Cash position: Rs {current_cash:,.0f}. "
     if runway_days < 999:
-        alert_hi += f"{runway_days} din ka kharcha cover ho sakta hai. "
+        alert_hi += f"It covers {runway_days} days of expenses. "
     else:
-        alert_hi += "Cash flow positive hai. "
+        alert_hi += "Cash flow is positive. "
     if suggestions:
-        alert_hi += "Sujhaav: " + "; ".join(suggestions[:3])
+        alert_hi += "Suggestions: " + "; ".join(suggestions[:3])
 
     return {
         "merchant_id": merchant_id,
@@ -594,7 +571,7 @@ async def get_forecast(
                 existing = _db2.table("briefings").select("id").eq("merchant_id", merchant_id).gte("created_at", today_str).execute()
                 already_sent = any("cash_crunch" in str(b) for b in (existing.data or []))
                 if not already_sent:
-                    msg = f"\u26a0\ufe0f Cash Crunch Alert: {len(cash_crunch_days)} din mein cash short hoga. Collection badhaein."
+                    msg = f"\u26a0\ufe0f Cash Crunch Alert: You might run out of cash in {len(cash_crunch_days)} days. Please improve collections."
                     asyncio.create_task(send_whatsapp("+917725014797", msg))
                     # Mark as sent
                     try:
@@ -620,7 +597,7 @@ async def get_forecast(
         )
     except Exception as e:
         logger.exception(f"Error in forecast: {e}")
-        return {"error": True, "message": "Kuch gadbad ho gayi. Kripya dobara try karein.", "detail": str(e)}
+        return {"error": True, "message": "An error occurred. Please try again.", "detail": str(e)}
 
 
 @router.get("/{merchant_id}/festivals")
@@ -657,7 +634,7 @@ async def get_festival_calendar(merchant_id: str):
         if today <= fest_date <= end_date:
             days_until = (fest_date - today).days
             expected_boost = round(avg_income * fest["impact_pct"] / 100, 2)
-            tip_template = _PREP_TIPS.get(fest["category"], _PREP_TIPS["shopping"])
+            tip_template = _PREP_TIPS.get(fest["category"], _PREP_TIPS["income"])
             tip_text = tip_template.format(
                 name=fest["name"],
                 date_str=fest["date"],
@@ -717,9 +694,9 @@ async def detect_crisis(merchant_id: str):
         alerts.append(CrisisAlert(
             alert_type="cash_crunch",
             severity="critical" if deficit > tw_income else "warning",
-            message=f"Is hafte kharcha income se {round(deficit)} rupaye zyada hai.",
+            message=f"Expenses exceed income by Rs {round(deficit)} this week.",
             predicted_date=(today + timedelta(days=7)).isoformat(),
-            recommendation="Kuch payments defer karein ya collection speed badhayein.",
+            recommendation="Consider deferring non-essential payments.",
             confidence=0.8,
         ))
 
@@ -730,8 +707,8 @@ async def detect_crisis(merchant_id: str):
             alerts.append(CrisisAlert(
                 alert_type="revenue_drop",
                 severity="critical" if drop_pct > 50 else "warning",
-                message=f"Income mein {round(drop_pct)}% ki girawat aayi hai pichle hafte se.",
-                recommendation="Naye customers laane ya existing customers ko offers bhejne ka sochein.",
+                message=f"Income has dropped by {round(drop_pct)}% compared to last week.",
+                recommendation="Investigate the cause of the drop.",
                 confidence=round(min(0.9, drop_pct / 100), 2),
             ))
 
@@ -742,8 +719,8 @@ async def detect_crisis(merchant_id: str):
             alerts.append(CrisisAlert(
                 alert_type="expense_spike",
                 severity="warning",
-                message=f"Kharche mein {round(spike_pct)}% ka izaafa hua hai.",
-                recommendation="Bade kharche review karein -- koi unnecessary expense toh nahi?",
+                message=f"Expenses have increased by {round(spike_pct)}%.",
+                recommendation="Review large expenses to identify unnecessary spending.",
                 confidence=round(min(0.85, spike_pct / 100), 2),
             ))
 
@@ -754,8 +731,8 @@ async def detect_crisis(merchant_id: str):
         alerts.append(CrisisAlert(
             alert_type="overdue_collections",
             severity="warning" if len(udharis) < 5 else "critical",
-            message=f"{len(udharis)} customers ka {round(overdue_total)} rupaye ka udhari overdue hai.",
-            recommendation="Aaj hi sabko reminder bhejein -- /remind-all use karein.",
+            message=f"Rs {round(overdue_total)} in pending dues across {len(udharis)} accounts.",
+            recommendation="Send reminders today to recover funds.",
             confidence=0.95,
         ))
 

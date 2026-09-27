@@ -34,7 +34,7 @@ const HERO_STATS = [
 ];
 
 const QUICK_FEATURES = [
-  { icon: Mic, label: "Voice Input", sublabel: "Hindi + English" },
+  { icon: Mic, label: "Voice Input", sublabel: "Speech + Text" },
   { icon: BookOpen, label: "Debt Tracker", sublabel: "Credit Cards & Loans" },
   { icon: TrendingUp, label: "Spending Intelligence", sublabel: "Find Patterns" },
   { icon: Award, label: "Health Score", sublabel: "Overall Financial Health" },
@@ -58,7 +58,7 @@ const FEATURES: Feature[] = [
     id: "dashboard",
     icon: TrendingUp,
     title: "Consolidated Financial Health",
-    titleHi: "आपकी पूरी आर्थिक स्थिति एक जगह",
+    titleHi: "Your complete financial position in one place",
     subtitle: "Connect all your transactions, expenses, debt, and savings to see a complete picture of your financial health.",
     points: [
       "Track Income, Expenses, and Savings",
@@ -75,13 +75,13 @@ const FEATURES: Feature[] = [
     id: "copilot",
     icon: MessageCircle,
     title: "AI Financial Copilot",
-    titleHi: "आपका अपना Financial Advisor",
+    titleHi: "Your own Financial Advisor",
     subtitle: "Ask questions naturally. The AI analyzes your data to give personalized, quantified recommendations.",
     points: [
       "Ask 'What happens if I take a 50k loan?'",
       "Strict separation of Fact, Prediction & Recommendation",
       "Quantified expected impact for every action",
-      "Works in Hindi & English (Voice or Text)",
+      "Works in Voice or Text",
     ],
     color: "text-emerald-500",
     gradient: "from-emerald-500/10 to-green-500/10",
@@ -92,7 +92,7 @@ const FEATURES: Feature[] = [
     id: "intelligence",
     icon: Zap,
     title: "Spending & Savings Intelligence",
-    titleHi: "खर्च और बचत की पूरी समझ",
+    titleHi: "Complete understanding of expenses and savings",
     subtitle: "Detects category-wise spending patterns, unusual spending, and consistency of savings contributions.",
     points: [
       "Detect recurring financial obligations",
@@ -109,7 +109,7 @@ const FEATURES: Feature[] = [
     id: "simulator",
     icon: FileText,
     title: "What-If Impact Simulator",
-    titleHi: "फैसला लेने से पहले असर देखें",
+    titleHi: "See the impact before deciding",
     subtitle: "Dynamically see how different actions affect your financial health, cash flow, savings, and debt.",
     points: [
       "Simulate taking new loans",
@@ -129,21 +129,21 @@ const HOW_IT_WORKS = [
     step: "1",
     icon: Mic,
     title: "Speak or Chat",
-    titleHi: "बोलिये या लिखिये",
-    desc: "Talk naturally. Say something like \"Swiggy pe 500 rupaye kharch kiye\"",
+    titleHi: "Speak or Chat",
+    desc: "Talk naturally. Say something like \"Spent 500 rupees on Swiggy\"",
   },
   {
     step: "2",
     icon: Zap,
     title: "AI Processes",
-    titleHi: "AI समझता है",
+    titleHi: "AI Understands",
     desc: "Whisper transcribes, Groq LLM categorizes expense, amount, and intent in < 670ms",
   },
   {
     step: "3",
     icon: CheckCircle2,
     title: "Dashboard Updates",
-    titleHi: "डैशबोर्ड अपडेट",
+    titleHi: "Dashboard Updated",
     desc: "Transaction logged, savings rate updated, debt tracked, and impact analyzed — instantly",
   },
 ];

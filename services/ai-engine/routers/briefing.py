@@ -85,7 +85,7 @@ async def _generate_briefing_text(merchant_id: str) -> dict:
 
     prompt = (
         "You are Vyapaar, an AI business assistant for Indian SMBs. "
-        "Generate a morning business briefing in Hindi (Hinglish) for a shopkeeper. "
+        "Generate a morning business briefing in English. "
         "Keep it warm and conversational, like a trusted munshi giving an update. "
         "3-4 lines max for summary. Include one actionable tip in recommendations. "
         "Return JSON with keys: summary (2-3 sentences in Hinglish), highlights (list of strings), "
@@ -152,7 +152,7 @@ async def generate_briefing(merchant_id: str):
     if settings.sarvam_api_key:
         try:
             from routers.voice import synthesize_speech
-            audio_url = await synthesize_speech(briefing_data.get("summary", ""), "hi")
+            audio_url = await synthesize_speech(briefing_data.get("summary", ""), "en")
         except Exception:
             logger.exception("Briefing TTS failed")
 
@@ -229,7 +229,7 @@ async def send_briefing(merchant_id: str):
     try:
         from routers.voice import synthesize_speech
         import base64, uuid
-        audio_data_uri = await synthesize_speech(text, "hi")
+        audio_data_uri = await synthesize_speech(text, "en")
         if audio_data_uri and audio_data_uri.startswith("data:audio"):
             b64_data = audio_data_uri.split(",", 1)[1]
             audio_bytes = base64.b64decode(b64_data)

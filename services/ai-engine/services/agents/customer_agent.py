@@ -56,7 +56,7 @@ SEGMENT_MAP = {
 
 WINBACK_SYSTEM_PROMPT = """You are Vyapaar GrowthOS's customer winback specialist for Indian small businesses.
 
-Your task: Generate a personalized WhatsApp message in Hindi to win back a customer who hasn't visited recently.
+Your task: Generate a personalized WhatsApp message in English to win back a customer who hasn't visited recently.
 
 RULES:
 1. Use "ji" suffix with the customer's name
@@ -64,7 +64,7 @@ RULES:
 3. Reference their past purchases if available
 4. Include a personalized offer (discount or freebie)
 5. Keep under 160 characters for WhatsApp readability
-6. Use Hindi (Devanagari) with common English words
+6. Use clear, conversational English
 7. Sound personal, NOT like a marketing blast
 8. Add 1-2 relevant emojis
 9. Create urgency without being pushy
@@ -246,7 +246,7 @@ async def detect_churn(merchant_id: str) -> list[dict]:
 
 async def generate_winback(merchant_id: str, customer_id: str) -> dict:
     """
-    Generate a personalized Hindi winback message for a churning customer.
+    Generate a personalized English winback message for a churning customer.
 
     Args:
         merchant_id: The merchant's UUID
@@ -303,7 +303,7 @@ async def generate_winback(merchant_id: str, customer_id: str) -> dict:
     except Exception:
         shop_name = "Hamari Dukaan"
 
-    user_prompt = f"""Generate a Hindi winback WhatsApp message:
+    user_prompt = f"""Generate an English winback WhatsApp message:
 
 Customer: {customer_id}
 Shop: {shop_name}
@@ -312,7 +312,7 @@ Total visits: {visit_count}
 Average spend: Rs {avg_spend:,.0f}
 Offer: {discount}% discount, valid {validity_days} days
 
-Write the message in Hindi:"""
+Write the message in English:"""
 
     try:
         client = AsyncGroq(api_key=settings.groq_api_key)
@@ -329,9 +329,9 @@ Write the message in Hindi:"""
     except Exception as e:
         logger.error("Winback message generation failed: %s", e)
         message = (
-            f"Namaste {customer_id} ji! {shop_name} mein aapki bahut yaad aa rahi hai. "
-            f"Aapke liye special {discount}% discount hai — bas {validity_days} din ke liye! "
-            f"Aa jayiye na 🙏"
+            f"Hello {customer_id}! We miss you at {shop_name}. "
+            f"Here's a special {discount}% discount for you — valid for {validity_days} days! "
+            f"Come visit us soon 🙏"
         )
 
     return {
@@ -561,13 +561,13 @@ def _churn_reason(rfm: dict, txns: list, days_since: int) -> str:
 def _churn_reason_hindi(reason: str, name: str, days_since: int) -> str:
     """Generate Hindi explanation for churn reason."""
     reasons = {
-        "long_absence": f"{name} ji {days_since} din se nahi aaye. Kahin competitor ke paas toh nahi gaye?",
-        "declining_visits": f"{name} ji ki visits kam ho rahi hain. Unhe special offer bhejein.",
-        "declining_spend": f"{name} ji ka spend kam ho raha hai. Kuch naya dikhayein unhe.",
-        "overdue_visit": f"{name} ji ko aaye {days_since} din ho gaye. Yaad dilayein.",
-        "pattern_change": f"{name} ji ka pattern badal raha hai. Dhyan dein.",
+        "long_absence": f"{name} hasn't visited in {days_since} days. They might be going elsewhere.",
+        "declining_visits": f"{name}'s visits are declining. Send them a special offer.",
+        "declining_spend": f"{name}'s spending is decreasing. Show them new offerings.",
+        "overdue_visit": f"{name} is overdue for a visit ({days_since} days). Send a reminder.",
+        "pattern_change": f"{name}'s behavior pattern is changing. Pay attention.",
     }
-    return reasons.get(reason, f"{name} ji par dhyan dein — churn risk hai.")
+    return reasons.get(reason, f"Pay attention to {name} — there is a churn risk.")
 
 
 def _generate_customer_alerts(segment_counts: dict, customers: list) -> list[str]:
@@ -578,19 +578,19 @@ def _generate_customer_alerts(segment_counts: dict, customers: list) -> list[str
     champions = segment_counts.get("champion", 0)
 
     if churned > 0:
-        alerts.append(f"⚠️ {churned} customer churn ho gaye hain. Winback message bhejein!")
+        alerts.append(f"⚠️ {churned} customers have churned. Send winback messages!")
     if at_risk > 0:
-        alerts.append(f"🔶 {at_risk} customer at-risk hain. Jaldi action lein.")
+        alerts.append(f"🔶 {at_risk} customers are at-risk. Take action soon.")
     if champions > 0:
-        alerts.append(f"⭐ {champions} champion customers hain — inhe reward karein!")
+        alerts.append(f"⭐ You have {champions} champion customers — reward them!")
 
     # Find the highest value at-risk customer
     at_risk_customers = [c for c in customers if c.get("segment") in ("at_risk", "churned")]
     if at_risk_customers:
         top_risk = max(at_risk_customers, key=lambda c: c.get("total_spent", 0))
         alerts.append(
-            f"📌 Sabse important: {top_risk['customer_name']} (Rs {top_risk.get('total_spent', 0):,.0f} spent) "
-            f"ko turant contact karein!"
+            f"📌 Highest priority: Contact {top_risk['customer_name']} (Rs {top_risk.get('total_spent', 0):,.0f} spent) "
+            f"immediately!"
         )
 
     return alerts

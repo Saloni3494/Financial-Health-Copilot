@@ -90,10 +90,10 @@ const UDHARI_FALLBACK = generateUdhariData();
 type TabType = "all" | "pending" | "overdue" | "settled";
 
 const TAB_OPTIONS: { id: TabType; label: string; hindiLabel: string }[] = [
-  { id: "all", label: "All", hindiLabel: "\u0938\u092D\u0940" },
-  { id: "pending", label: "Pending", hindiLabel: "\u092C\u093E\u0915\u0940" },
-  { id: "overdue", label: "Overdue", hindiLabel: "\u0932\u0947\u091F" },
-  { id: "settled", label: "Settled", hindiLabel: "\u091A\u0941\u0915\u0924\u093E" },
+  { id: "all", label: "All", hindiLabel: "All" },
+  { id: "pending", label: "Pending", hindiLabel: "Pending" },
+  { id: "overdue", label: "Overdue", hindiLabel: "Overdue" },
+  { id: "settled", label: "Settled", hindiLabel: "Settled" },
 ];
 
 function getRiskColor(score: number) {

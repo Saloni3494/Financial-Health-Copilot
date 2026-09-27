@@ -253,7 +253,7 @@ def generate_crisis_recommendations(crisis_dates: list[dict]) -> list[str]:
         List of Hindi recommendation strings.
     """
     if not crisis_dates:
-        return ["✅ Agle 30 din mein koi cash crunch nahi dikhta. Sab theek hai!"]
+        return ["✅ No cash crunches detected in the next 30 days. Everything looks good!"]
 
     recommendations = []
     seen_tiers = set()
@@ -322,7 +322,7 @@ async def analyze_savings(merchant_id: str) -> dict:
         "savings_rate": savings_rate,
         "investments": savings_investments,
         "trend": trend,
-        "recommendation_hi": f"Aapka savings rate {savings_rate:.1f}% hai. Ise 20% tak le jane ka try karein.",
+        "recommendation_hi": f"Your savings rate is {savings_rate:.1f}%. Try to increase it to 20%.",
         "expected_impact": f"Expected Savings Impact: Rs {(income * 0.20 - savings):,.0f} extra per month."
     }
 
@@ -615,17 +615,17 @@ def _crisis_recommendation_single(
     """Generate a single Hindi recommendation for a crisis date."""
     if days_until <= 7:
         return (
-            f"⚠️ Sirf {days_until} din bache! Rs {shortfall:,.0f} ki kami hogi. "
-            f"Abhi se udhari collection tez karein aur non-urgent kharche rokein."
+            f"⚠️ Only {days_until} days left! Shortfall of Rs {shortfall:,.0f}. "
+            f"Stop non-urgent expenses immediately."
         )
     elif days_until <= 14:
         return (
-            f"🔶 {days_until} din mein Rs {shortfall:,.0f} tight hoga. "
-            f"Top 5 udhari reminders bhejein aur supplier se extra credit maangein."
+            f"🔶 Cash flow will be tight by Rs {shortfall:,.0f} in {days_until} days. "
+            f"Delay any non-essential payments."
         )
     return (
-        f"💡 {days_until} din baad cash flow issue ho sakta hai. "
-        f"Supplier payments reschedule karein aur advance orders lein."
+        f"💡 Potential cash flow issue in {days_until} days. "
+        f"Start planning to reduce expenses."
     )
 
 
@@ -643,15 +643,15 @@ def _generate_daily_alerts(
     direction = income_change.get("direction", "stable")
     change = income_change.get("change_percent", 0)
     if direction == "up":
-        alerts.append(f"📈 Aaj ki sale kal se {change:.0f}% zyada hai! Badiya chal raha hai.")
+        alerts.append(f"📈 Today's income is {change:.0f}% higher than yesterday! Great job.")
     elif direction == "down":
-        alerts.append(f"📉 Aaj ki sale kal se {abs(change):.0f}% kam hai. Dhyan dein.")
+        alerts.append(f"📉 Today's income is {abs(change):.0f}% lower than yesterday. Keep an eye on expenses.")
 
     # Margin alert
     if today_data.get("margin", 0) < 10 and today_data.get("income", 0) > 0:
         alerts.append(
-            f"⚠️ Aaj ka margin sirf {today_data['margin']:.0f}% hai — "
-            f"expenses zyada ho rahe hain."
+            f"⚠️ Today's margin is only {today_data['margin']:.0f}% — "
+            f"expenses are higher than usual."
         )
 
     # Festival alerts
@@ -659,19 +659,19 @@ def _generate_daily_alerts(
         if fest.get("days_away", 0) <= 3:
             impact = fest.get("revenue_impact", 1.0)
             alerts.append(
-                f"🎉 {fest['name']} {fest['days_away']} din mein! "
-                f"Sale {(impact - 1) * 100:.0f}% tak badh sakti hai."
+                f"🎉 {fest['name']} is in {fest['days_away']} days! "
+                f"Income may increase by {(impact - 1) * 100:.0f}%."
             )
 
     # GST deadline alerts (Repurposing for general reminders if needed)
     for gst in gst_deadlines:
         if gst.get("days_away", 30) <= 5:
             alerts.append(
-                f"📋 Tax/Compliance deadline {gst['days_away']} din mein! "
-                f"Abhi clear kar lein."
+                f"📋 Tax/Compliance deadline in {gst['days_away']} days! "
+                f"Clear it soon."
             )
 
     if not alerts:
-        alerts.append("✅ Financial health normal chal rahi hai.")
+        alerts.append("✅ Financial health is currently stable.")
 
     return alerts

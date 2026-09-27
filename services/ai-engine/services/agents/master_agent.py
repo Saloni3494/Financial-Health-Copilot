@@ -29,7 +29,7 @@ PERSONALITY:
 - You are analytical, objective, and highly structured.
 - You provide clear, data-driven financial advice.
 - You do not make up data; if data is missing, explicitly state what is missing and reduce your confidence.
-- You speak in Hindi (Devanagari script with English numbers and terms) mixed with English (Hinglish) where natural.
+- You speak purely in English.
 
 CRITICAL RULE - YOU MUST STRICTLY FORMAT EVERY RESPONSE WITH THESE EXACT SECTIONS:
 
@@ -58,7 +58,7 @@ async def generate_response(
     context: dict = None,
 ) -> str:
     """
-    Generate the Master Agent's Hindi response after an action is completed.
+    Generate the Master Agent's English response after an action is completed.
 
     Args:
         intent: The classified intent
@@ -68,7 +68,7 @@ async def generate_response(
         context: Additional context (today's P&L, pending udhari, etc.)
 
     Returns:
-        Hindi response text for WhatsApp/TTS
+        English response text for WhatsApp/TTS
     """
     context = context or {}
 
@@ -120,23 +120,23 @@ Generate a response for {merchant_name} confirming the action and giving relevan
 
 
 def _fallback_response(intent: str, entities: dict, action_result: dict) -> str:
-    """Fallback Hindi responses when LLM is unavailable"""
+    """Fallback English responses when LLM is unavailable"""
     amount = entities.get("amount", 0)
     person = entities.get("person", "")
 
     fallbacks = {
-        "CASH_RECEIVED": f"Rs {amount:,.0f} income note kar liya. 💰",
-        "EXPENSE_LOG": f"Rs {amount:,.0f} kharcha mein daal diya. 📝",
-        "UDHARI_CREATE": f"{person} ka Rs {amount:,.0f} udhari note kar liya. Remind karoonga. 📋",
-        "UDHARI_SETTLE": f"{person} ne Rs {amount:,.0f} wapas kar diya! Udhari settle. ✅",
-        "QUERY_SUMMARY": "Aaj ka hisaab tayyar hai. Dashboard pe dekhiye. 📊",
-        "QUERY_PROFIT": "Profit ka hisaab dashboard pe update ho gaya. 📈",
-        "QUERY_EXPENSE": "Kharcha ka breakdown dashboard pe hai. 📉",
-        "COMMAND_REMIND": "Reminders bhej diye! Paytm link bhi include hai. 📤",
-        "COMMAND_GST": "GST ka status update ho gaya. Dashboard pe dekhiye. 📋",
-        "GENERAL": "Ji, main sun raha hoon. Kaise madad kar sakta hoon? 🙏",
+        "CASH_RECEIVED": f"Income of Rs {amount:,.0f} logged. 💰",
+        "EXPENSE_LOG": f"Expense of Rs {amount:,.0f} logged. 📝",
+        "UDHARI_CREATE": f"Pending debt of Rs {amount:,.0f} for {person} logged. I will remind you. 📋",
+        "UDHARI_SETTLE": f"{person} paid back Rs {amount:,.0f}! Debt settled. ✅",
+        "QUERY_SUMMARY": "Today's summary is ready. Check the dashboard. 📊",
+        "QUERY_PROFIT": "Profit calculation updated on the dashboard. 📈",
+        "QUERY_EXPENSE": "Expense breakdown is on the dashboard. 📉",
+        "COMMAND_REMIND": "Reminders sent! Payment links included. 📤",
+        "COMMAND_GST": "GST status updated. Check the dashboard. 📋",
+        "GENERAL": "Yes, I'm listening. How can I help you? 🙏",
     }
-    return fallbacks.get(intent, "Note kar liya. 👍")
+    return fallbacks.get(intent, "Noted. 👍")
 
 
 async def generate_morning_briefing(
@@ -165,9 +165,9 @@ async def generate_morning_briefing(
     gst_text = ""
     if gst_status and gst_status.get("status") in ("pending", "ready"):
         days_left = gst_status.get("days_remaining", 0)
-        gst_text = f"📋 GSTR-3B {days_left} din mein due hai — {gst_status.get('status', 'pending')}"
+        gst_text = f"📋 GSTR-3B is due in {days_left} days — {gst_status.get('status', 'pending')}"
 
-    prompt = f"""Generate a Hindi morning briefing WhatsApp message for {merchant_name}.
+    prompt = f"""Generate a morning briefing WhatsApp message for {merchant_name}.
 
 Yesterday's data:
 - Income: Rs {yesterday_data.get('income', 0):,.0f}
@@ -188,7 +188,7 @@ GST:
 PayScore: {payscore}
 
 Format it as a WhatsApp message with emojis and clear sections. Keep it under 200 words.
-End with an encouraging line and "Reply karein ya voice note bhejein! 🎤" """
+End with an encouraging line and "Reply or send a voice note! 🎤" """
 
     try:
         client = AsyncGroq(api_key=settings.groq_api_key)
@@ -204,22 +204,22 @@ End with an encouraging line and "Reply karein ya voice note bhejein! 🎤" """
         return response.choices[0].message.content.strip()
     except Exception as e:
         # Fallback static briefing
-        return f"""Namaste {merchant_name}! 🙏
+        return f"""Hello {merchant_name}! 🙏
 
-Kal ka hisaab:
-📈 Sale: Rs {yesterday_data.get('income', 0):,.0f}
-📉 Kharcha: Rs {yesterday_data.get('expense', 0):,.0f}
-💰 Munafa: Rs {yesterday_data.get('profit', 0):,.0f} ({yesterday_data.get('margin', 0):.0f}% margin)
+Yesterday's Summary:
+📈 Income: Rs {yesterday_data.get('income', 0):,.0f}
+📉 Expense: Rs {yesterday_data.get('expense', 0):,.0f}
+💰 Profit: Rs {yesterday_data.get('profit', 0):,.0f} ({yesterday_data.get('margin', 0):.0f}% margin)
 
-Aaj ke alerts:
+Today's Alerts:
 {alerts_text}
 
 {udhari_text}
 {gst_text}
 
-PayScore: {payscore} 💳
+Health Score: {payscore} 💳
 
-Reply karein ya voice note bhejein! 🎤"""
+Reply or send a voice note! 🎤"""
 
 
 # ============================================

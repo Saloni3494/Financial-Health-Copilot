@@ -6,13 +6,12 @@ import { API_BASE_URL, DEMO_MERCHANT_ID } from "@/lib/constants";
 import {
   Bell,
   Search,
-  QrCode,
-  Wallet,
-  Building2,
+  BookOpen,
   TrendingUp,
   ArrowRight,
   Sparkles,
-  Zap
+  Zap,
+  Lightbulb
 } from "lucide-react";
 
 export default function MobileHome() {

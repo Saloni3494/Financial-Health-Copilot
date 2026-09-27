@@ -298,7 +298,7 @@ function formatDateShort(dateStr: string): string {
 }
 
 export default function ForecastPage() {
-  const [showHindi, setShowHindi] = useState(true);
+  const [showHindi, setShowHindi] = useState(false);
   const [forecastData, setForecastData] = useState<CashFlowDataPoint[] | null>(null);
   const [upcomingFestivals, setUpcomingFestivals] = useState<ApiFestival[]>([]);
   const [cashCrunchDays, setCashCrunchDays] = useState<string[]>([]);
@@ -637,14 +637,8 @@ export default function ForecastPage() {
       >
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-semibold text-gray-900">
-            {showHindi ? "Sujhaav" : "Recommendations"}
+            Recommendations
           </h3>
-          <button
-            onClick={() => setShowHindi(!showHindi)}
-            className="text-[10px] font-medium text-vyapaar-primary bg-blue-50 px-2.5 py-1 rounded-md"
-          >
-            {showHindi ? "English" : "Hindi"}
-          </button>
         </div>
 
         <div className="space-y-3">
@@ -725,8 +719,8 @@ export default function ForecastPage() {
             </div>
             <p className="text-sm text-gray-700 leading-relaxed">
               {showHindi
-                ? "GST filing ke liye har quarter mein paisa alag rakhein."
-                : "Keep funds aside for quarterly GST filing."}
+                ? "Emergency situation ke liye hamesha 3 mahine ka kharcha alag rakhein."
+                : "Always keep 3 months of expenses aside as an emergency fund."}
             </p>
           </motion.div>
         </div>

@@ -28,11 +28,11 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { id: "home", label: "Home", hindiLabel: "होम", icon: Home, href: "/dashboard" },
-  { id: "udhari", label: "Udhari", hindiLabel: "उधारी", icon: BookOpen, href: "/udhari" },
-  { id: "voice", label: "Voice", hindiLabel: "आवाज़", icon: Mic, href: "/soundbox" },
-  { id: "whatsapp", label: "WhatsApp", hindiLabel: "वॉट्सऐप", icon: MessageCircle, href: "/whatsapp" },
-  { id: "more", label: "More", hindiLabel: "और", icon: MoreHorizontal, href: "/forecast" },
+  { id: "home", label: "Home", hindiLabel: "Home", icon: Home, href: "/dashboard" },
+  { id: "udhari", label: "Udhari", hindiLabel: "Credit", icon: BookOpen, href: "/udhari" },
+  { id: "voice", label: "Voice", hindiLabel: "Voice", icon: Mic, href: "/soundbox" },
+  { id: "whatsapp", label: "WhatsApp", hindiLabel: "WhatsApp", icon: MessageCircle, href: "/whatsapp" },
+  { id: "more", label: "More", hindiLabel: "More", icon: MoreHorizontal, href: "/forecast" },
 ];
 
 /**

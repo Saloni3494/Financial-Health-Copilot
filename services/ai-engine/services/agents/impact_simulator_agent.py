@@ -76,7 +76,7 @@ async def simulate_impact(merchant_id: str, query: str) -> dict:
             "simulated_cashflow": new_net,
             "monthly_impact": -emi,
             "affordability": affordability,
-            "recommendation_hi": f"50k loan lene se Rs {emi:,.0f}/month EMI badhegi. \n📈 EXPECTED IMPACT: Cashflow will reduce to Rs {new_net:,.0f}."
+            "recommendation_hi": f"Taking a loan will increase your EMI by Rs {emi:,.0f}/month. \n📈 EXPECTED IMPACT: Cashflow will reduce to Rs {new_net:,.0f}."
         }
     elif action == "increase_savings":
         new_net = baseline_net - amount
@@ -86,7 +86,7 @@ async def simulate_impact(merchant_id: str, query: str) -> dict:
             "simulated_cashflow": new_net,
             "monthly_impact": -amount,
             "affordability": affordability,
-            "recommendation_hi": f"SIP Rs {amount:,.0f} badhane se future wealth grow hogi. \n📈 EXPECTED IMPACT: Monthly cash buffer drops to Rs {new_net:,.0f}, but long-term savings increase."
+            "recommendation_hi": f"Increasing SIP by Rs {amount:,.0f} will grow your future wealth. \n📈 EXPECTED IMPACT: Monthly cash buffer drops to Rs {new_net:,.0f}, but long-term savings increase."
         }
     elif action == "increase_expense":
         new_net = baseline_net - amount
@@ -96,7 +96,7 @@ async def simulate_impact(merchant_id: str, query: str) -> dict:
             "simulated_cashflow": new_net,
             "monthly_impact": -amount,
             "affordability": affordability,
-            "recommendation_hi": f"Kharche mein Rs {amount:,.0f} ki badhoti hogi. \n📈 EXPECTED IMPACT: Mahine ke end mein aapke paas Rs {new_net:,.0f} bachenge."
+            "recommendation_hi": f"Expenses will increase by Rs {amount:,.0f}. \n📈 EXPECTED IMPACT: You will have Rs {new_net:,.0f} left at the end of the month."
         }
         
     return {"error": "Unsupported simulation"}
