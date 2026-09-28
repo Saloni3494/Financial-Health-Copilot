@@ -1,5 +1,5 @@
 """
-Code-switching (Hindi-English) handler for Vyapaar GrowthOS.
+Code-switching (Hindi-English) handler for FinSight AI.
 
 Detects and normalizes common Hinglish patterns so downstream NLU
 components receive cleaner, more consistent text.

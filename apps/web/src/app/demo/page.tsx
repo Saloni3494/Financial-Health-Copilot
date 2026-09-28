@@ -223,15 +223,15 @@ export default function DemoControlPanel() {
   );
 
   // Simulation events feed — shows what's happening visually
-  const [simEvents, setSimEvents] = useState<Array<{id: number; text: string; type: "income"|"expense"|"udhari"|"alert"|"agent"|"info"; time: string}>>([]);
+  const [simEvents, setSimEvents] = useState<Array<{ id: number; text: string; type: "income" | "expense" | "udhari" | "alert" | "agent" | "info"; time: string }>>([]);
   const simIdRef = useRef(0);
 
-  const addSimEvent = useCallback((text: string, type: "income"|"expense"|"udhari"|"alert"|"agent"|"info" = "info") => {
+  const addSimEvent = useCallback((text: string, type: "income" | "expense" | "udhari" | "alert" | "agent" | "info" = "info") => {
     setSimEvents(prev => [{
       id: ++simIdRef.current,
       text,
       type,
-      time: new Date().toLocaleTimeString("en-IN", {hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true})
+      time: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true })
     }, ...prev].slice(0, 30));
   }, []);
 
@@ -283,7 +283,7 @@ export default function DemoControlPanel() {
         // Step 5: Entity extraction
         setPipelineStep(5);
         const entities = nlu.entities || {};
-        const entityStr = Object.entries(entities).map(([k,v]) => `${k}=${v}`).join(", ");
+        const entityStr = Object.entries(entities).map(([k, v]) => `${k}=${v}`).join(", ");
         addSimEvent(`🏷️ Entities: ${entityStr || "none"}`, "agent");
         await new Promise(r => setTimeout(r, 200));
 
@@ -348,13 +348,12 @@ export default function DemoControlPanel() {
 
   const StatusDot = ({ status }: { status: "checking" | "up" | "down" }) => (
     <span
-      className={`inline-flex h-2.5 w-2.5 rounded-full ${
-        status === "up"
+      className={`inline-flex h-2.5 w-2.5 rounded-full ${status === "up"
           ? "bg-emerald-400 shadow-[0_0_6px_rgba(34,197,94,0.5)]"
           : status === "down"
             ? "bg-red-400 shadow-[0_0_6px_rgba(239,68,68,0.5)]"
             : "bg-amber-400 animate-pulse"
-      }`}
+        }`}
     />
   );
 
@@ -482,11 +481,10 @@ export default function DemoControlPanel() {
                 <button
                   key={page.path}
                   onClick={() => navigateIframe(page.path)}
-                  className={`px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all flex items-center gap-1.5 ${
-                    activeIframePage === page.path
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all flex items-center gap-1.5 ${activeIframePage === page.path
                       ? "bg-[#00BAF2] text-white shadow-lg shadow-[#00BAF2]/20"
                       : "bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50"
-                  }`}
+                    }`}
                 >
                   <span>{page.icon}</span>
                   <span>{page.label}</span>
@@ -497,14 +495,14 @@ export default function DemoControlPanel() {
               ref={iframeRef}
               src={activeIframePage}
               className="w-full flex-1 border-0"
-              title="Vyapaar GrowthOS Live Dashboard"
+              title="FinSight AI Live Dashboard"
             />
             {/* Overlay showing simulation events */}
             <AnimatePresence>
               {simEvents.length > 0 && (
                 <motion.div
-                  initial={{opacity: 0, y: 20}}
-                  animate={{opacity: 1, y: 0}}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   className="absolute bottom-4 left-4 right-4 max-h-48 overflow-y-auto bg-black/80 backdrop-blur-sm rounded-xl border border-gray-700/50 p-3 space-y-1"
                 >
                   <div className="flex items-center justify-between mb-1">
@@ -512,14 +510,13 @@ export default function DemoControlPanel() {
                     <button onClick={() => setSimEvents([])} className="text-[9px] text-gray-500 hover:text-gray-300">Clear</button>
                   </div>
                   {simEvents.slice(0, 8).map((evt) => (
-                    <div key={evt.id} className={`text-[10px] font-mono px-2 py-1 rounded ${
-                      evt.type === "income" ? "text-emerald-400 bg-emerald-950/30" :
-                      evt.type === "expense" ? "text-red-400 bg-red-950/30" :
-                      evt.type === "alert" ? "text-red-300 bg-red-950/40" :
-                      evt.type === "agent" ? "text-violet-400 bg-violet-950/30" :
-                      evt.type === "udhari" ? "text-amber-400 bg-amber-950/30" :
-                      "text-gray-400 bg-gray-900/50"
-                    }`}>
+                    <div key={evt.id} className={`text-[10px] font-mono px-2 py-1 rounded ${evt.type === "income" ? "text-emerald-400 bg-emerald-950/30" :
+                        evt.type === "expense" ? "text-red-400 bg-red-950/30" :
+                          evt.type === "alert" ? "text-red-300 bg-red-950/40" :
+                            evt.type === "agent" ? "text-violet-400 bg-violet-950/30" :
+                              evt.type === "udhari" ? "text-amber-400 bg-amber-950/30" :
+                                "text-gray-400 bg-gray-900/50"
+                      }`}>
                       {evt.text}
                     </div>
                   ))}
@@ -531,249 +528,245 @@ export default function DemoControlPanel() {
 
         {/* Data Tab: Stat cards + events */}
         {leftTab === "data" && <div className="flex-1 overflow-y-auto">
-        {/* Alert Banner — appears when triggered */}
-        <AnimatePresence>
-          {alertBanner && (
-            <motion.div
-              initial={{height: 0, opacity: 0}}
-              animate={{height: "auto", opacity: 1}}
-              exit={{height: 0, opacity: 0}}
-              className="bg-red-500/10 border-b border-red-500/30 px-4 py-2.5"
-            >
-              <div className="flex items-center gap-2">
-                <AlertTriangle className="h-4 w-4 text-red-400 shrink-0" />
-                <span className="text-xs text-red-300">{alertBanner}</span>
-                <button onClick={() => setAlertBanner(null)} className="ml-auto text-[10px] text-red-400 hover:text-red-300">Dismiss</button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          {/* Alert Banner — appears when triggered */}
+          <AnimatePresence>
+            {alertBanner && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="bg-red-500/10 border-b border-red-500/30 px-4 py-2.5"
+              >
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-red-400 shrink-0" />
+                  <span className="text-xs text-red-300">{alertBanner}</span>
+                  <button onClick={() => setAlertBanner(null)} className="ml-auto text-[10px] text-red-400 hover:text-red-300">Dismiss</button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-        <div className="p-4 space-y-4">
-          {/* Live P&L Cards — animate on change */}
-          {dashboardData && (
-            <div className="grid grid-cols-4 gap-3">
-              {[
-                { label: "Today Income", key: "today_income", color: "emerald", icon: "📈" },
-                { label: "Today Expense", key: "today_expense", color: "red", icon: "📉" },
-                { label: "Today Profit", key: "today_profit", color: (dashboardData.today_profit as number) >= 0 ? "emerald" : "red", icon: "💰" },
-                { label: "PayScore", key: "payscore", color: "blue", icon: "💳" },
-              ].map((card) => {
-                const isChanged = dataFlashKeys.includes(card.key);
-                const prevVal = prevDashboardData ? Number(prevDashboardData[card.key] || 0) : null;
-                const currVal = Number(dashboardData[card.key] || 0);
-                const delta = prevVal !== null ? currVal - prevVal : 0;
-                return (
-                  <motion.div
-                    key={card.key}
-                    animate={isChanged ? { scale: [1, 1.08, 1], borderColor: ["rgba(0,186,242,0.8)", "rgba(0,186,242,0.3)"] } : {}}
-                    transition={{ duration: 1 }}
-                    className={`bg-[#1A1B23] rounded-xl border p-3 transition-all ${
-                      isChanged ? "border-[#00BAF2] shadow-[0_0_15px_rgba(0,186,242,0.4)]" : "border-gray-800/50"
-                    }`}
-                  >
-                    <div className="text-[10px] text-gray-500 font-mono mb-1">{card.icon} {card.label}</div>
-                    <div className={`text-xl font-bold tabular-nums ${card.color === "emerald" ? "text-emerald-400" : card.color === "red" ? "text-red-400" : "text-[#00BAF2]"}`}>
-                      {card.key === "payscore" ? `${currVal}/100` : formatINR(currVal)}
-                    </div>
-                    <AnimatePresence>
-                      {isChanged && delta !== 0 && (
-                        <motion.div
-                          initial={{opacity: 0, y: 5}}
-                          animate={{opacity: 1, y: 0}}
-                          exit={{opacity: 0}}
-                          className={`text-[11px] font-bold font-mono mt-1 ${delta > 0 ? "text-emerald-400" : "text-red-400"}`}
-                        >
-                          {delta > 0 ? "▲ +" : "▼ "}{card.key === "payscore" ? delta : formatINR(delta)}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Secondary stats */}
-          {dashboardData && (
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { label: "Pending Udhari", key: "total_udhari", color: "amber", icon: "📝" },
-                { label: "Overdue", key: "overdue_udhari", color: "red", icon: "⚠️" },
-                { label: "Active Customers", key: "active_customers", color: "gray", icon: "👥" },
-              ].map((card) => {
-                const isChanged = dataFlashKeys.includes(card.key);
-                return (
-                  <motion.div
-                    key={card.key}
-                    animate={isChanged ? { scale: [1, 1.05, 1] } : {}}
-                    className={`bg-[#1A1B23] rounded-xl border p-3 transition-all ${isChanged ? "border-[#00BAF2] shadow-[0_0_10px_rgba(0,186,242,0.3)]" : "border-gray-800/50"}`}
-                  >
-                    <div className="text-[10px] text-gray-500 font-mono mb-1">{card.icon} {card.label}</div>
-                    <div className={`text-base font-bold ${card.color === "amber" ? "text-amber-400" : card.color === "red" ? "text-red-400" : "text-gray-200"}`}>
-                      {card.key === "active_customers" ? String(dashboardData[card.key] || 0) : formatINR(Number(dashboardData[card.key] || 0))}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
-
-          {/* LIVE EVENT FEED — shows what's happening in real-time */}
-          <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4">
-            <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">📡 Live Activity Feed</h3>
-            <div className="space-y-1.5 max-h-52 overflow-y-auto">
-              <AnimatePresence mode="popLayout">
-                {simEvents.length === 0 ? (
-                  <div className="text-center py-6 text-gray-600 text-xs">Run a simulation to see events appear here...</div>
-                ) : simEvents.map((evt) => (
-                  <motion.div
-                    key={evt.id}
-                    initial={{opacity: 0, x: -30, height: 0}}
-                    animate={{opacity: 1, x: 0, height: "auto"}}
-                    exit={{opacity: 0, x: 30}}
-                    className={`flex items-start gap-2 px-2.5 py-2 rounded-lg border text-[11px] font-mono ${
-                      evt.type === "income" ? "bg-emerald-950/20 border-emerald-800/30 text-emerald-300" :
-                      evt.type === "expense" ? "bg-red-950/20 border-red-800/30 text-red-300" :
-                      evt.type === "udhari" ? "bg-amber-950/20 border-amber-800/30 text-amber-300" :
-                      evt.type === "alert" ? "bg-red-950/30 border-red-700/40 text-red-300" :
-                      evt.type === "agent" ? "bg-violet-950/20 border-violet-800/30 text-violet-300" :
-                      "bg-[#0F1117] border-gray-800/30 text-gray-400"
-                    }`}
-                  >
-                    <span className="text-[9px] text-gray-600 shrink-0 mt-0.5">{evt.time}</span>
-                    <span className="flex-1">{evt.text}</span>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Multi-Agent Pipeline Visualization — Animated Steps */}
-          <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4">
-            <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">🤖 AI Agent Pipeline — How Vyapaar GrowthOS Processes Commands</h3>
-            <div className="space-y-2">
-              {[
-                { step: 1, label: "Voice / Text Input", detail: "User speaks or types a command in English", tech: "Browser MediaRecorder API" },
-                { step: 2, label: "Speech-to-Text (STT)", detail: "Speech audio → text transcription", tech: "Groq Whisper API | 12% WER | ~200ms" },
-                { step: 3, label: "Intent Classification", detail: "Identifies what the merchant wants to do", tech: "Groq LLM (Llama 3.3 70B) | 12 intent classes | ~50ms" },
-                { step: 4, label: "Entity Extraction (NER)", detail: "Extracts amounts, names, categories from text", tech: "Groq LLM + Numeral Parser" },
-                { step: 5, label: "Master Agent (Orchestrator)", detail: "Routes to the right specialist agent", tech: "LangGraph State Machine | 7-phase pipeline | Constitutional AI guardrails" },
-                { step: 6, label: "Specialist Agent Execution", detail: "Domain-specific action taken", tech: nluResult?.intent === "add_expense" ? "Action Router → Supabase INSERT → WebSocket emit" : nluResult?.intent === "add_udhari" ? "Collection Agent (Thompson Sampling RL) → Schedule reminders" : nluResult?.intent === "get_today_summary" ? "CashFlow Agent → Aggregate P&L → Generate summary" : "Action Router → DB operation → Event emission" },
-                { step: 7, label: "Database + Real-time Update", detail: "Data persisted, dashboard notified instantly", tech: "Supabase PostgreSQL + Redis Pub/Sub + Socket.IO WebSocket" },
-                { step: 8, label: "English Response + TTS", detail: "AI generates English response, optionally speaks it", tech: "Groq LLM (Copilot personality) + Sarvam TTS" },
-              ].map((s) => {
-                const isActive = pipelineActive && s.step <= pipelineStep;
-                const isComplete = pipelineStep >= 8 && !processing;
-                const isCurrent = pipelineActive && s.step === pipelineStep && processing;
-                return (
-                  <div key={s.step} className={`flex items-start gap-3 px-3 py-2 rounded-lg border transition-all duration-300 ${
-                    isCurrent ? "border-amber-500/50 bg-amber-950/20" :
-                    isComplete ? "border-emerald-700/40 bg-emerald-950/10" :
-                    isActive ? "border-[#00BAF2]/30 bg-[#00BAF2]/5" :
-                    "border-gray-800/30 bg-[#0F1117]"
-                  }`}>
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 ${
-                      isCurrent ? "bg-amber-500/20 text-amber-400 animate-pulse" :
-                      isComplete ? "bg-emerald-500/20 text-emerald-400" :
-                      isActive ? "bg-[#00BAF2]/20 text-[#00BAF2]" :
-                      "bg-gray-800 text-gray-600"
-                    }`}>
-                      {isComplete ? "✓" : isCurrent ? "⟳" : s.step}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${isComplete ? "text-emerald-300" : isCurrent ? "text-amber-300" : isActive ? "text-[#00BAF2]" : "text-gray-500"}`}>
-                          {s.label}
-                        </span>
-                        {isCurrent && <span className="text-[9px] text-amber-400 animate-pulse">processing...</span>}
+          <div className="p-4 space-y-4">
+            {/* Live P&L Cards — animate on change */}
+            {dashboardData && (
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  { label: "Today Income", key: "today_income", color: "emerald", icon: "📈" },
+                  { label: "Today Expense", key: "today_expense", color: "red", icon: "📉" },
+                  { label: "Today Profit", key: "today_profit", color: (dashboardData.today_profit as number) >= 0 ? "emerald" : "red", icon: "💰" },
+                  { label: "PayScore", key: "payscore", color: "blue", icon: "💳" },
+                ].map((card) => {
+                  const isChanged = dataFlashKeys.includes(card.key);
+                  const prevVal = prevDashboardData ? Number(prevDashboardData[card.key] || 0) : null;
+                  const currVal = Number(dashboardData[card.key] || 0);
+                  const delta = prevVal !== null ? currVal - prevVal : 0;
+                  return (
+                    <motion.div
+                      key={card.key}
+                      animate={isChanged ? { scale: [1, 1.08, 1], borderColor: ["rgba(0,186,242,0.8)", "rgba(0,186,242,0.3)"] } : {}}
+                      transition={{ duration: 1 }}
+                      className={`bg-[#1A1B23] rounded-xl border p-3 transition-all ${isChanged ? "border-[#00BAF2] shadow-[0_0_15px_rgba(0,186,242,0.4)]" : "border-gray-800/50"
+                        }`}
+                    >
+                      <div className="text-[10px] text-gray-500 font-mono mb-1">{card.icon} {card.label}</div>
+                      <div className={`text-xl font-bold tabular-nums ${card.color === "emerald" ? "text-emerald-400" : card.color === "red" ? "text-red-400" : "text-[#00BAF2]"}`}>
+                        {card.key === "payscore" ? `${currVal}/100` : formatINR(currVal)}
                       </div>
-                      <span className="text-[10px] text-gray-500 block">{s.detail}</span>
-                      <span className="text-[9px] text-gray-600 font-mono block mt-0.5">{s.tech}</span>
+                      <AnimatePresence>
+                        {isChanged && delta !== 0 && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className={`text-[11px] font-bold font-mono mt-1 ${delta > 0 ? "text-emerald-400" : "text-red-400"}`}
+                          >
+                            {delta > 0 ? "▲ +" : "▼ "}{card.key === "payscore" ? delta : formatINR(delta)}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Secondary stats */}
+            {dashboardData && (
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { label: "Pending Udhari", key: "total_udhari", color: "amber", icon: "📝" },
+                  { label: "Overdue", key: "overdue_udhari", color: "red", icon: "⚠️" },
+                  { label: "Active Customers", key: "active_customers", color: "gray", icon: "👥" },
+                ].map((card) => {
+                  const isChanged = dataFlashKeys.includes(card.key);
+                  return (
+                    <motion.div
+                      key={card.key}
+                      animate={isChanged ? { scale: [1, 1.05, 1] } : {}}
+                      className={`bg-[#1A1B23] rounded-xl border p-3 transition-all ${isChanged ? "border-[#00BAF2] shadow-[0_0_10px_rgba(0,186,242,0.3)]" : "border-gray-800/50"}`}
+                    >
+                      <div className="text-[10px] text-gray-500 font-mono mb-1">{card.icon} {card.label}</div>
+                      <div className={`text-base font-bold ${card.color === "amber" ? "text-amber-400" : card.color === "red" ? "text-red-400" : "text-gray-200"}`}>
+                        {card.key === "active_customers" ? String(dashboardData[card.key] || 0) : formatINR(Number(dashboardData[card.key] || 0))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* LIVE EVENT FEED — shows what's happening in real-time */}
+            <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4">
+              <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">📡 Live Activity Feed</h3>
+              <div className="space-y-1.5 max-h-52 overflow-y-auto">
+                <AnimatePresence mode="popLayout">
+                  {simEvents.length === 0 ? (
+                    <div className="text-center py-6 text-gray-600 text-xs">Run a simulation to see events appear here...</div>
+                  ) : simEvents.map((evt) => (
+                    <motion.div
+                      key={evt.id}
+                      initial={{ opacity: 0, x: -30, height: 0 }}
+                      animate={{ opacity: 1, x: 0, height: "auto" }}
+                      exit={{ opacity: 0, x: 30 }}
+                      className={`flex items-start gap-2 px-2.5 py-2 rounded-lg border text-[11px] font-mono ${evt.type === "income" ? "bg-emerald-950/20 border-emerald-800/30 text-emerald-300" :
+                          evt.type === "expense" ? "bg-red-950/20 border-red-800/30 text-red-300" :
+                            evt.type === "udhari" ? "bg-amber-950/20 border-amber-800/30 text-amber-300" :
+                              evt.type === "alert" ? "bg-red-950/30 border-red-700/40 text-red-300" :
+                                evt.type === "agent" ? "bg-violet-950/20 border-violet-800/30 text-violet-300" :
+                                  "bg-[#0F1117] border-gray-800/30 text-gray-400"
+                        }`}
+                    >
+                      <span className="text-[9px] text-gray-600 shrink-0 mt-0.5">{evt.time}</span>
+                      <span className="flex-1">{evt.text}</span>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Multi-Agent Pipeline Visualization — Animated Steps */}
+            <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4">
+              <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">🤖 AI Agent Pipeline — How FinSight AI Processes Commands</h3>
+              <div className="space-y-2">
+                {[
+                  { step: 1, label: "Voice / Text Input", detail: "User speaks or types a command in English", tech: "Browser MediaRecorder API" },
+                  { step: 2, label: "Speech-to-Text (STT)", detail: "Speech audio → text transcription", tech: "Groq Whisper API | 12% WER | ~200ms" },
+                  { step: 3, label: "Intent Classification", detail: "Identifies what the merchant wants to do", tech: "Groq LLM (Llama 3.3 70B) | 12 intent classes | ~50ms" },
+                  { step: 4, label: "Entity Extraction (NER)", detail: "Extracts amounts, names, categories from text", tech: "Groq LLM + Numeral Parser" },
+                  { step: 5, label: "Master Agent (Orchestrator)", detail: "Routes to the right specialist agent", tech: "LangGraph State Machine | 7-phase pipeline | Constitutional AI guardrails" },
+                  { step: 6, label: "Specialist Agent Execution", detail: "Domain-specific action taken", tech: nluResult?.intent === "add_expense" ? "Action Router → Supabase INSERT → WebSocket emit" : nluResult?.intent === "add_udhari" ? "Collection Agent (Thompson Sampling RL) → Schedule reminders" : nluResult?.intent === "get_today_summary" ? "CashFlow Agent → Aggregate P&L → Generate summary" : "Action Router → DB operation → Event emission" },
+                  { step: 7, label: "Database + Real-time Update", detail: "Data persisted, dashboard notified instantly", tech: "Supabase PostgreSQL + Redis Pub/Sub + Socket.IO WebSocket" },
+                  { step: 8, label: "English Response + TTS", detail: "AI generates English response, optionally speaks it", tech: "Groq LLM (Copilot personality) + Sarvam TTS" },
+                ].map((s) => {
+                  const isActive = pipelineActive && s.step <= pipelineStep;
+                  const isComplete = pipelineStep >= 8 && !processing;
+                  const isCurrent = pipelineActive && s.step === pipelineStep && processing;
+                  return (
+                    <div key={s.step} className={`flex items-start gap-3 px-3 py-2 rounded-lg border transition-all duration-300 ${isCurrent ? "border-amber-500/50 bg-amber-950/20" :
+                        isComplete ? "border-emerald-700/40 bg-emerald-950/10" :
+                          isActive ? "border-[#00BAF2]/30 bg-[#00BAF2]/5" :
+                            "border-gray-800/30 bg-[#0F1117]"
+                      }`}>
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 ${isCurrent ? "bg-amber-500/20 text-amber-400 animate-pulse" :
+                          isComplete ? "bg-emerald-500/20 text-emerald-400" :
+                            isActive ? "bg-[#00BAF2]/20 text-[#00BAF2]" :
+                              "bg-gray-800 text-gray-600"
+                        }`}>
+                        {isComplete ? "✓" : isCurrent ? "⟳" : s.step}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className={`text-xs font-semibold ${isComplete ? "text-emerald-300" : isCurrent ? "text-amber-300" : isActive ? "text-[#00BAF2]" : "text-gray-500"}`}>
+                            {s.label}
+                          </span>
+                          {isCurrent && <span className="text-[9px] text-amber-400 animate-pulse">processing...</span>}
+                        </div>
+                        <span className="text-[10px] text-gray-500 block">{s.detail}</span>
+                        <span className="text-[9px] text-gray-600 font-mono block mt-0.5">{s.tech}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Results summary */}
+              {nluResult && !processing && (
+                <div className="mt-3 grid grid-cols-3 gap-3 text-[11px] font-mono">
+                  <div className="bg-[#0F1117] rounded-lg p-2">
+                    <span className="text-gray-500">Intent: </span>
+                    <span className="text-[#00BAF2] font-bold">{nluResult.intent}</span>
+                  </div>
+                  <div className="bg-[#0F1117] rounded-lg p-2">
+                    <span className="text-gray-500">Confidence: </span>
+                    <span className={Number(nluResult.confidence) > 0.8 ? "text-emerald-400" : "text-amber-400"}>
+                      {((Number(nluResult.confidence) || 0) * 100).toFixed(0)}%
+                    </span>
+                  </div>
+                  <div className="bg-[#0F1117] rounded-lg p-2">
+                    <span className="text-gray-500">Total Time: </span>
+                    <span className="text-gray-300">{nluResult.processing_time_ms || "~400"}ms</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Agent Activity Detail */}
+            {nluResult && (
+              <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4 space-y-3">
+                <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500">📋 Last Action Detail</h3>
+                {nluResult.entities && Object.keys(nluResult.entities).length > 0 && (
+                  <div>
+                    <span className="text-[10px] text-gray-500 font-mono">Extracted Entities:</span>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {Object.entries(nluResult.entities).map(([k, v]) => (
+                        <span key={k} className="px-2 py-1 rounded-md bg-violet-500/10 border border-violet-500/20 text-violet-300 text-[11px] font-mono">
+                          {k}: {String(v)}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                )}
+                {nluResult.agents_invoked && nluResult.agents_invoked.length > 0 && (
+                  <div>
+                    <span className="text-[10px] text-gray-500 font-mono">Agents Invoked:</span>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {nluResult.agents_invoked.map((a) => (
+                        <span key={a} className="px-2 py-1 rounded-md bg-[#00BAF2]/10 border border-[#00BAF2]/20 text-[#00BAF2] text-[11px] font-mono">
+                          🤖 {a}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {(nluResult.response_hindi || nluResult.reply) && (
+                  <div className="bg-[#0F1117] rounded-lg p-3 border border-gray-700/30">
+                    <span className="text-[10px] text-gray-500 font-mono block mb-1">AI Response (Hindi):</span>
+                    <p className="text-gray-200 text-sm leading-relaxed">{nluResult.response_hindi || nluResult.reply}</p>
+                  </div>
+                )}
+              </div>
+            )}
 
-            {/* Results summary */}
-            {nluResult && !processing && (
-              <div className="mt-3 grid grid-cols-3 gap-3 text-[11px] font-mono">
-                <div className="bg-[#0F1117] rounded-lg p-2">
-                  <span className="text-gray-500">Intent: </span>
-                  <span className="text-[#00BAF2] font-bold">{nluResult.intent}</span>
-                </div>
-                <div className="bg-[#0F1117] rounded-lg p-2">
-                  <span className="text-gray-500">Confidence: </span>
-                  <span className={Number(nluResult.confidence) > 0.8 ? "text-emerald-400" : "text-amber-400"}>
-                    {((Number(nluResult.confidence) || 0) * 100).toFixed(0)}%
-                  </span>
-                </div>
-                <div className="bg-[#0F1117] rounded-lg p-2">
-                  <span className="text-gray-500">Total Time: </span>
-                  <span className="text-gray-300">{nluResult.processing_time_ms || "~400"}ms</span>
+            {/* Recent Transactions from Supabase */}
+            {dashboardData && Array.isArray((dashboardData as Record<string, unknown>).recent_transactions) && (
+              <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4">
+                <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">📊 Recent Transactions (Live from Supabase)</h3>
+                <div className="space-y-1.5 max-h-48 overflow-y-auto">
+                  {((dashboardData as Record<string, unknown>).recent_transactions as Array<Record<string, unknown>>).slice(0, 8).map((txn, i) => (
+                    <div key={i} className="flex items-center justify-between px-2 py-1.5 rounded bg-[#0F1117] text-[11px] font-mono">
+                      <span className={String(txn.type) === "income" ? "text-emerald-400" : "text-red-400"}>
+                        {String(txn.type) === "income" ? "↑" : "↓"} {String(txn.category || "")}
+                      </span>
+                      <span className={String(txn.type) === "income" ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
+                        {formatINR(Number(txn.amount || 0))}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
           </div>
-
-          {/* Agent Activity Detail */}
-          {nluResult && (
-            <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4 space-y-3">
-              <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500">📋 Last Action Detail</h3>
-              {nluResult.entities && Object.keys(nluResult.entities).length > 0 && (
-                <div>
-                  <span className="text-[10px] text-gray-500 font-mono">Extracted Entities:</span>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {Object.entries(nluResult.entities).map(([k, v]) => (
-                      <span key={k} className="px-2 py-1 rounded-md bg-violet-500/10 border border-violet-500/20 text-violet-300 text-[11px] font-mono">
-                        {k}: {String(v)}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {nluResult.agents_invoked && nluResult.agents_invoked.length > 0 && (
-                <div>
-                  <span className="text-[10px] text-gray-500 font-mono">Agents Invoked:</span>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {nluResult.agents_invoked.map((a) => (
-                      <span key={a} className="px-2 py-1 rounded-md bg-[#00BAF2]/10 border border-[#00BAF2]/20 text-[#00BAF2] text-[11px] font-mono">
-                        🤖 {a}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {(nluResult.response_hindi || nluResult.reply) && (
-                <div className="bg-[#0F1117] rounded-lg p-3 border border-gray-700/30">
-                  <span className="text-[10px] text-gray-500 font-mono block mb-1">AI Response (Hindi):</span>
-                  <p className="text-gray-200 text-sm leading-relaxed">{nluResult.response_hindi || nluResult.reply}</p>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Recent Transactions from Supabase */}
-          {dashboardData && Array.isArray((dashboardData as Record<string, unknown>).recent_transactions) && (
-            <div className="bg-[#1A1B23] rounded-xl border border-gray-800/50 p-4">
-              <h3 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">📊 Recent Transactions (Live from Supabase)</h3>
-              <div className="space-y-1.5 max-h-48 overflow-y-auto">
-                {((dashboardData as Record<string, unknown>).recent_transactions as Array<Record<string, unknown>>).slice(0, 8).map((txn, i) => (
-                  <div key={i} className="flex items-center justify-between px-2 py-1.5 rounded bg-[#0F1117] text-[11px] font-mono">
-                    <span className={String(txn.type) === "income" ? "text-emerald-400" : "text-red-400"}>
-                      {String(txn.type) === "income" ? "↑" : "↓"} {String(txn.category || "")}
-                    </span>
-                    <span className={String(txn.type) === "income" ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
-                      {formatINR(Number(txn.amount || 0))}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>}
+        </div>}
       </div>
 
       {/* Right: Control Panel */}
@@ -782,7 +775,7 @@ export default function DemoControlPanel() {
         <div className="px-5 py-4 border-b border-gray-800/50 bg-[#0F1117]">
           <div className="flex items-center gap-2 mb-3">
             <Terminal className="h-5 w-5 text-[#00BAF2]" />
-            <h1 className="text-lg font-bold text-white tracking-tight">Vyapaar GrowthOS Demo Panel</h1>
+            <h1 className="text-lg font-bold text-white tracking-tight"> FinSight AI Demo Panel</h1>
           </div>
           <p className="text-xs text-gray-500 font-mono">Hackathon simulation controller</p>
 
@@ -839,18 +832,16 @@ export default function DemoControlPanel() {
                   return (
                     <div
                       key={step.id}
-                      className={`rounded-xl border p-3 transition-all ${
-                        isComplete
+                      className={`rounded-xl border p-3 transition-all ${isComplete
                           ? "border-emerald-700/40 bg-emerald-950/10"
                           : "border-gray-700/30 bg-[#1A1B23] hover:border-amber-700/40"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-start gap-2.5">
-                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 ${
-                          isComplete
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 ${isComplete
                             ? "bg-emerald-500/20 text-emerald-400"
                             : "bg-amber-500/15 text-amber-400"
-                        }`}>
+                          }`}>
                           {isComplete ? "✓" : step.id}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -901,11 +892,10 @@ export default function DemoControlPanel() {
                               }
                             }}
                             disabled={processing}
-                            className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all ${
-                              isComplete
+                            className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all ${isComplete
                                 ? "bg-emerald-500/10 text-emerald-400 border border-emerald-700/30"
                                 : "bg-amber-500/15 text-amber-400 border border-amber-700/30 hover:bg-amber-500/25"
-                            } disabled:opacity-40`}
+                              } disabled:opacity-40`}
                           >
                             {isComplete ? "✓ Done" : step.actionLabel}
                           </button>
@@ -1034,7 +1024,7 @@ export default function DemoControlPanel() {
                   addSimEvent("⚠️ ALERT: Profit went negative! Cash crunch detected", "alert");
                   addSimEvent("📤 Collection Agent: Sending 3 udhari reminders automatically", "agent");
                   addSimEvent("💳 PayScore: Recalculating... expense_ratio worsened", "agent");
-                  if (result) addSimEvent(`✅ AI Response: "${(result as Record<string,string>).response_text || (result as Record<string,string>).reply || 'Expense logged'}"`, "info");
+                  if (result) addSimEvent(`✅ AI Response: "${(result as Record<string, string>).response_text || (result as Record<string, string>).reply || 'Expense logged'}"`, "info");
                 }}
                 processing={processing}
               />
@@ -1089,12 +1079,12 @@ export default function DemoControlPanel() {
             </div>
           </section>
 
-          {/* AUTONOMOUS AI ACTIONS — Things Vyapaar GrowthOS does on its own */}
+          {/* AUTONOMOUS AI ACTIONS — Things FinSight AI does on its own */}
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">
               🤖 Autonomous AI Actions (No Merchant Input Needed)
             </h2>
-            <p className="text-[10px] text-gray-500 mb-3">Vyapaar GrowthOS detects problems and acts on its own — the merchant doesn&apos;t need to do anything</p>
+            <p className="text-[10px] text-gray-500 mb-3">FinSight AI detects problems and acts on its own — the merchant doesn&apos;t need to do anything</p>
             <div className="space-y-2">
               <AutoFlowButton
                 title="🔴 Auto: Cash running low → Emergency collection + loan suggestion"
@@ -1112,7 +1102,7 @@ export default function DemoControlPanel() {
                 onRun={async () => {
                   addSimEvent("📊 CashFlow Agent: Daily automated scan running...", "agent");
                   addSimEvent("⚠️ PREDICTION: Cash shortage of Rs 45,000 in 7 days", "alert");
-                  setAlertBanner("Cash Crunch Predicted: Rs 45,000 short in 7 days. Vyapaar GrowthOS is taking automated action...");
+                  setAlertBanner("Cash Crunch Predicted: Rs 45,000 short in 7 days. FinSight AI is taking automated action...");
                   addSimEvent("🤖 Master Agent: Initiating emergency recovery sequence", "agent");
                   addSimEvent("📤 Collection Agent: Sending reminders to 5 overdue debtors", "agent");
                   addSimEvent("📱 WhatsApp → Sharma ji: Rs 8,000 reminder with Paytm payment link", "udhari");
@@ -1206,11 +1196,10 @@ export default function DemoControlPanel() {
             <button
               onClick={isRecording ? stopRecording : startRecording}
               disabled={processing}
-              className={`w-full py-3 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
-                isRecording
+              className={`w-full py-3 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${isRecording
                   ? "bg-red-500/20 border border-red-500/50 text-red-400 animate-pulse"
                   : "bg-[#00BAF2]/10 border border-[#00BAF2]/30 text-[#00BAF2] hover:bg-[#00BAF2]/20"
-              } disabled:opacity-40`}
+                } disabled:opacity-40`}
             >
               {processing ? (
                 <><Loader2 className="h-4 w-4 animate-spin" /> Processing voice...</>
@@ -1421,20 +1410,18 @@ function AutoFlowButton({
           {steps.map((step, i) => (
             <div
               key={i}
-              className={`flex items-start gap-2 px-2.5 py-1.5 rounded-lg transition-all duration-500 ${
-                completedSteps.includes(i)
+              className={`flex items-start gap-2 px-2.5 py-1.5 rounded-lg transition-all duration-500 ${completedSteps.includes(i)
                   ? "bg-emerald-950/20 border border-emerald-700/30"
                   : running && i === completedSteps.length
                     ? "bg-amber-950/20 border border-amber-700/30 animate-pulse"
                     : "bg-[#0F1117] border border-gray-800/20"
-              }`}
+                }`}
             >
               <span className="text-[10px] mt-0.5 shrink-0">
                 {completedSteps.includes(i) ? "✅" : running && i === completedSteps.length ? "⏳" : "⬜"}
               </span>
-              <span className={`text-[11px] font-mono ${
-                completedSteps.includes(i) ? "text-emerald-300" : "text-gray-500"
-              }`}>
+              <span className={`text-[11px] font-mono ${completedSteps.includes(i) ? "text-emerald-300" : "text-gray-500"
+                }`}>
                 {step}
               </span>
             </div>

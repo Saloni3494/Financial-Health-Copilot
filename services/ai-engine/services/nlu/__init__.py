@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS NLU (Natural Language Understanding) module.
+FinSight AI NLU (Natural Language Understanding) module.
 
 Provides voice and text processing pipelines for Hindi/Hinglish input
 from small Indian shopkeepers.

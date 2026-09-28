@@ -38,7 +38,7 @@ export function SocketProvider({
     try {
       const s = getSocket();
       if (!s) {
-        console.warn("Vyapaar GrowthOS: Socket unavailable, running in offline mode");
+        console.warn("FinSight AI: Socket unavailable, running in offline mode");
         return;
       }
 
@@ -55,7 +55,7 @@ export function SocketProvider({
 
       function onConnectError() {
         // Don't block UI if backend is unreachable
-        console.warn("Vyapaar GrowthOS: Socket connection failed, running in offline mode");
+        console.warn("FinSight AI: Socket connection failed, running in offline mode");
         setIsConnected(false);
       }
 
@@ -73,7 +73,7 @@ export function SocketProvider({
         s.disconnect();
       };
     } catch (err) {
-      console.warn("Vyapaar GrowthOS: Socket setup failed", err);
+      console.warn("FinSight AI: Socket setup failed", err);
     }
   }, [merchantId]);
 

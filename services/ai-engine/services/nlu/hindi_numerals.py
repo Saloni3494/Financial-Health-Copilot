@@ -1,5 +1,5 @@
 """
-Hindi Numeral Parser for Vyapaar GrowthOS.
+Hindi Numeral Parser for FinSight AI.
 
 Converts spoken Hindi/Hinglish numeral expressions to integer values.
 Handles compound expressions, fractions (dedh, dhai, sawa, paune, saadhe),

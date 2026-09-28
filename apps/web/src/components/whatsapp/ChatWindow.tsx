@@ -12,7 +12,7 @@ interface ChatWindowProps {
 
 export default function ChatWindow({
   messages,
-  merchantName = "Vyapaar GrowthOS",
+  merchantName = "FinSight AI",
 }: ChatWindowProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 

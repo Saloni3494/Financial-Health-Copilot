@@ -33,7 +33,7 @@ import {
   LineChart,
   BrainCircuit
 } from "lucide-react";
-import { clearVyapaarAuth } from "@/components/common/AuthGuard";
+import { clearFinSightAuth } from "@/components/common/AuthGuard";
 
 interface NavItem {
   label: string;
@@ -78,7 +78,7 @@ export function Sidebar({ payScore = 74 }: SidebarProps) {
         collapsed && "justify-center px-3"
       )}>
         <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl overflow-hidden shadow-lg">
-          <img src="/logo-munim.png" alt="Paytm Vyapaar" className="h-10 w-10 object-cover" />
+          <img src="/logo-munim.png" alt="FinSight AI" className="h-10 w-10 object-cover" />
           <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-white bg-emerald-400" />
         </div>
         {!collapsed && (
@@ -164,7 +164,7 @@ export function Sidebar({ payScore = 74 }: SidebarProps) {
               </div>
             </div>
             <button
-              onClick={() => { clearVyapaarAuth(); router.push("/login"); }}
+              onClick={() => { clearFinSightAuth(); router.push("/login"); }}
               className="mt-2 w-full flex items-center gap-2 px-3 py-2 text-xs text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -178,7 +178,7 @@ export function Sidebar({ payScore = 74 }: SidebarProps) {
               DU
             </div>
             <button
-              onClick={() => { clearVyapaarAuth(); router.push("/login"); }}
+              onClick={() => { clearFinSightAuth(); router.push("/login"); }}
               className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
               title="Logout"
             >

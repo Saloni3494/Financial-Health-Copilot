@@ -1,4 +1,4 @@
-// Vyapaar GrowthOS Design System Constants
+// FinSight AI Design System Constants
 
 export const COLORS = {
   primary: "#00BAF2", // Paytm blue

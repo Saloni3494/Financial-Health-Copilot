@@ -118,7 +118,7 @@ export default function PoliciesPage() {
           <div className="p-5 space-y-6">
             {/* Level Selector */}
             <div className="space-y-3">
-              <label className="text-sm font-bold text-gray-700">Vyapaar AI Autonomy Level</label>
+              <label className="text-sm font-bold text-gray-700">FinSight AI Autonomy Level</label>
               <div className="grid grid-cols-3 gap-3">
                 {(['suggest', 'approve', 'auto'] as const).map(level => {
                   const isActive = policy.autonomy_level === level;

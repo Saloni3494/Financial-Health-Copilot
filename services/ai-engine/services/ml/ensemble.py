@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Forecast Ensemble
+FinSight AI Forecast Ensemble
 Combines TFT + Chronos + Prophet predictions with adaptive weighting.
 
 Weighting strategy:

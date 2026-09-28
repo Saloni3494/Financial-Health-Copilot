@@ -1,4 +1,4 @@
-"""Vyapaar GrowthOS Specialist Agents"""
+"""FinSight AI Specialist Agents"""
 
 from services.agents import (
     collection_agent,

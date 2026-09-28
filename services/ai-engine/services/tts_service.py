@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Text-to-Speech Service
+FinSight AI Text-to-Speech Service
 
 Primary: Sarvam Bulbul (Hindi-optimized, 2B parameter Indic TTS)
 Fallback: Browser SpeechSynthesis API (handled frontend-side)

@@ -239,7 +239,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/logo-munim.png" alt="Paytm Vyapaar" className="h-10 rounded-lg" />
+            <img src="/logo-munim.png" alt="FinSight AI" className="h-10 rounded-lg" />
           </div>
           <div className="hidden md:flex items-center gap-8">
             <a
@@ -313,7 +313,7 @@ export default function LandingPage() {
               transition={{ duration: 0.6, delay: 0.05 }}
               className="mb-8"
             >
-              <img src="/logo-munim.png" alt="Paytm Vyapaar" className="h-20 mx-auto rounded-xl shadow-lg" />
+              <img src="/logo-munim.png" alt="FinSight AI" className="h-20 mx-auto rounded-xl shadow-lg" />
             </motion.div>
 
             {/* Headline */}
@@ -609,7 +609,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center">
-              <img src="/logo-munim.png" alt="Paytm Vyapaar" className="h-10 rounded-lg" />
+              <img src="/logo-munim.png" alt="FinSight AI" className="h-10 rounded-lg" />
             </div>
             <div className="flex items-center gap-6 text-sm text-gray-400">
               <a href="#features" className="hover:text-gray-600 transition-colors">

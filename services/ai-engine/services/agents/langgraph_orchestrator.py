@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Multi-Agent Orchestrator — LangGraph State Machine
+FinSight AI Multi-Agent Orchestrator — LangGraph State Machine
 
 This is the REAL multi-agent system that orchestrates all specialist agents.
 Not just a routing table — a proper state machine with:
@@ -85,7 +85,7 @@ class AgentPhase(str, Enum):
 
 @dataclass
 class AgentState:
-    """Full state of one Vyapaar GrowthOS agent execution cycle"""
+    """Full state of one FinSight AI agent execution cycle"""
     # Input
     merchant_id: str
     input_text: str
@@ -194,7 +194,7 @@ AGENT_ROUTING = {
 # ORCHESTRATOR
 # ============================================
 
-class VyapaarOrchestrator:
+class FinSightOrchestrator:
     """
     Multi-agent orchestrator using state machine pattern.
 
@@ -627,13 +627,13 @@ class VyapaarOrchestrator:
 # SINGLETON
 # ============================================
 
-_orchestrator: Optional[VyapaarOrchestrator] = None
+_orchestrator: Optional[FinSightOrchestrator] = None
 
 
-def get_orchestrator() -> VyapaarOrchestrator:
+def get_orchestrator() -> FinSightOrchestrator:
     global _orchestrator
     if _orchestrator is None:
-        _orchestrator = VyapaarOrchestrator()
+        _orchestrator = FinSightOrchestrator()
     return _orchestrator
 
 

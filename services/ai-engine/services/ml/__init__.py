@@ -1,1 +1,1 @@
-"""Vyapaar GrowthOS ML Models"""
+"""FinSight AI ML Models"""

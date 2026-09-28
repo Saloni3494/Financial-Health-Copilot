@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Collection Agent
+FinSight AI Collection Agent
 
 Orchestrates the udhari collection process:
 1. Scores each debtor using Thompson Sampling
@@ -34,7 +34,7 @@ from services.ml.thompson_sampler import (
 settings = get_settings()
 
 
-COLLECTION_SYSTEM_PROMPT = """You are Vyapaar GrowthOS's collection message writer for Indian small businesses.
+COLLECTION_SYSTEM_PROMPT = """You are FinSight AI's collection message writer for Indian small businesses.
 
 Your task: Generate a WhatsApp message in English to collect a pending udhari (informal credit) payment.
 

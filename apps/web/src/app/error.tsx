@@ -10,7 +10,7 @@ export default function Error({
   unstable_retry: () => void;
 }) {
   useEffect(() => {
-    console.error("Vyapaar GrowthOS page error:", error);
+    console.error("FinSight AI page error:", error);
   }, [error]);
 
   return (

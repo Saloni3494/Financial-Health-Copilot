@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Cash Flow Forecast Agent
+FinSight AI Cash Flow Forecast Agent
 
 Provides cash flow forecasting and crisis detection:
 1. Load/compute forecasts enriched with festival markers

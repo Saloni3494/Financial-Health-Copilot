@@ -387,7 +387,7 @@ export default function SettingsPage() {
           {/* ────── Preferences ────── */}
           <Section icon={Globe} title="Preferences">
             <div className="space-y-1">
-              <FieldRow label="Language" description="Vyapaar GrowthOS will respond in this language">
+              <FieldRow label="Language" description="FinSight AI will respond in this language">
                 <select
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
@@ -419,7 +419,7 @@ export default function SettingsPage() {
                   Collection Aggressiveness
                 </p>
                 <p className="text-xs text-gray-400 mb-4">
-                  How actively should Vyapaar GrowthOS remind customers about pending payments?
+                  How actively should FinSight AI remind customers about pending payments?
                 </p>
                 <div className="space-y-3">
                   {(
@@ -635,7 +635,7 @@ export default function SettingsPage() {
           <Section icon={Info} title="About">
             <div className="space-y-3">
               <div className="flex items-center justify-between py-2">
-                <p className="text-sm text-gray-600">Vyapaar GrowthOS Version</p>
+                <p className="text-sm text-gray-600">FinSight AI Version</p>
                 <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-mono font-semibold text-gray-600">
                   v1.0.0
                 </span>
@@ -672,7 +672,7 @@ export default function SettingsPage() {
                 <div>
                   <p className="text-sm font-medium text-gray-900">Log Out</p>
                   <p className="text-xs text-gray-400">
-                    Sign out of your Vyapaar GrowthOS account on this device
+                    Sign out of your FinSight AI account on this device
                   </p>
                 </div>
                 <button

@@ -65,8 +65,9 @@ export default function ImpactPage() {
   const getMetricLabel = (metric: string) => {
     switch (metric) {
       case 'revenue': return 'Revenue (₹)';
-      case 'udhari_collected': return 'Udhar Collected (₹)';
+      case 'udhari_collected': return 'Debt Collected (₹)';
       case 'inventory_cost': return 'Inventory Value (₹)';
+      case 'cost_savings': return 'Cost Savings (₹)';
       default: return metric;
     }
   };

@@ -1,5 +1,5 @@
 """
-NLU Pipeline orchestrator for Vyapaar GrowthOS.
+NLU Pipeline orchestrator for FinSight AI.
 
 Processes voice or text input through: noise reduction → STT → intent
 classification → entity extraction → structured result.

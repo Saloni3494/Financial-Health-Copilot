@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Master Agent — LangGraph Multi-Agent Orchestration
+FinSight AI Master Agent — LangGraph Multi-Agent Orchestration
 
 The Master Agent is the "Muneem personality" that:
 1. Receives NLU output (intent + entities)

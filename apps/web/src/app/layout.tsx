@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Vyapaar GrowthOS - Your Digital Muneem",
+  title: "FinSight AI - Your Digital Muneem",
   description:
     "AI-powered voice-first bookkeeper for Indian shopkeepers. Manage sales, udhari, customers, and compliance in Hindi and English.",
   manifest: "/manifest.json",

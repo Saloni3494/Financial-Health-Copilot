@@ -17,7 +17,7 @@ const PAGE_TITLES: Record<string, { title: string; subtitle: string }> = {
   "/employees": { title: "Employees", subtitle: "Apni team" },
   "/whatsapp": { title: "WhatsApp", subtitle: "Business messaging" },
   "/soundbox": { title: "Soundbox", subtitle: "Payment alerts" },
-  "/chat": { title: "AI Chat", subtitle: "Vyapaar GrowthOS se baat karein" },
+  "/chat": { title: "AI Chat", subtitle: "FinSight AI se baat karein" },
 };
 
 export function TopHeader() {
@@ -69,7 +69,7 @@ export function TopHeader() {
         {/* AI Sparkle */}
         <button className="hidden h-10 items-center gap-1.5 rounded-xl bg-[#002e6e] px-3.5 text-xs font-semibold text-white shadow-[0_8px_18px_-10px_rgba(0,46,110,0.8)] transition-all hover:bg-[#00428d] hover:shadow-[#00baf2]/30 active:scale-[0.98] sm:flex">
           <Sparkles className="h-3.5 w-3.5" />
-          <span>AI Vyapaar</span>
+          <span>FinSight AI</span>
         </button>
 
         {/* Voice Input */}

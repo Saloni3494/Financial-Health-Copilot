@@ -1,5 +1,5 @@
 """
-Voice router -- the critical path for Vyapaar GrowthOS.
+Voice router -- the critical path for FinSight AI.
 
 POST /process   Accept audio blob -> STT -> NLU -> Action -> Response
 POST /text      Accept text directly -> NLU -> Action -> Response
@@ -51,7 +51,7 @@ async def transcribe_audio(audio_bytes: bytes, language: str = "hi") -> str:
 # NLU -- Groq LLM intent extraction
 # ---------------------------------------------------------------------------
 
-NLU_SYSTEM_PROMPT = """You are the NLU engine for Vyapaar GrowthOS, an AI accounting assistant for Indian small businesses.
+NLU_SYSTEM_PROMPT = """You are the NLU engine for FinSight AI, an AI accounting assistant for Indian small businesses.
 Given user speech, extract:
 1. intent: one of [add_income, add_expense, personal_withdrawal, add_udhari, settle_udhari, get_today_summary, get_udhari_summary, get_balance, send_reminder, setup_recurring, add_vendor_payment, add_vendor_order, check_vendor_balance, create_invoice, check_stock, mark_attendance, check_employee, employee_advance, greeting, help, unknown]
 2. entities: {amount, category, party_name, customer_name, beneficiary_name, description, phone, due_date, payment_mode, frequency, upi_id} -- only include what is present
@@ -395,7 +395,7 @@ async def process_text_demo(req: VoiceTextRequest):
 @router.post("/chat")
 async def chat_with_muneem(req: VoiceTextRequest):
     """
-    Conversational chat with Vyapaar AI.
+    Conversational chat with FinSight AI.
     For actionable commands (add expense, create udhari), routes through NLU.
     For general questions, uses Groq LLM directly as a conversational assistant.
     """
@@ -499,7 +499,7 @@ async def chat_with_muneem(req: VoiceTextRequest):
     except Exception:
         context = "No data available yet"
 
-    chat_prompt = f"""You are Vyapaar AI, a friendly and helpful AI accountant/CFO for Indian small businesses.
+    chat_prompt = f"""You are FinSight AI, a friendly and helpful AI accountant/CFO for Indian small businesses.
 You speak in English. You are warm, professional, and knowledgeable about:
 - Bookkeeping, P&L, cash flow
 - GST filing and tax optimization

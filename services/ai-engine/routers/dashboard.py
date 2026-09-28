@@ -293,7 +293,7 @@ async def send_pnl_whatsapp(merchant_id: str):
     msg += f"\nProfit: Rs {data['net_profit']:,.0f} ({data['margin_pct']}%)"
     if data.get('commentary_hi'):
         msg += f"\n\n{data['commentary_hi'][:500]}"
-    msg += "\n\n- Vyapaar GrowthOS"
+    msg += "\n\n- FinSight AI"
 
     try:
         result = await send_whatsapp(to="+917725014797", body=msg)
@@ -522,7 +522,7 @@ async def get_dashboard(merchant_id: str):
                 briefing_text = f"Namaste! Aaj ka hisaab: Income Rs {t_inc:,.0f}, Kharcha Rs {t_exp:,.0f}, Profit Rs {t_inc-t_exp:,.0f}. Udhari pending: Rs {total_udhari:,.0f}."
                 from services.twilio_service import send_whatsapp
                 import asyncio
-                asyncio.create_task(send_whatsapp("+917725014797", f"\U0001f305 Vyapaar GrowthOS Morning Briefing\n\n{briefing_text}"))
+                asyncio.create_task(send_whatsapp("+917725014797", f"\U0001f305 FinSight AI Morning Briefing\n\n{briefing_text}"))
                 _db.table("briefings").insert({"merchant_id": merchant_id, "date": _today, "content": {"summary": briefing_text}}).execute()
         except Exception:
             pass

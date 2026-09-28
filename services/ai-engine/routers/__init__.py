@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS API Routers.
+FinSight AI API Routers.
 
 Each module exposes a FastAPI ``APIRouter`` instance named ``router``
 that is mounted in ``main.py`` with the appropriate prefix and tags.

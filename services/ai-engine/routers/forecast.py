@@ -480,7 +480,7 @@ async def send_cash_crunch_alert(merchant_id: str):
     msg += f"Runway: {data['runway_days']} din\n\n"
     if data["suggestions"]:
         msg += "Kya karein:\n" + "\n".join(f"\u2022 {s}" for s in data["suggestions"][:4])
-    msg += "\n\n- Vyapaar GrowthOS"
+    msg += "\n\n- FinSight AI"
 
     try:
         result = await _send_wa(to="+917725014797", body=msg)

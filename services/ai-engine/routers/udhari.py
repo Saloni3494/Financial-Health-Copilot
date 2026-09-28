@@ -256,7 +256,7 @@ async def send_reminder(udhari_id: str):
             amount=remaining,
             days_overdue=0,
             tone=tone,
-            merchant_name="Vyapaar GrowthOS Merchant",
+            merchant_name="FinSight AI Merchant",
             merchant_owner="Merchant",
             payment_link=payment_link,
             reminder_count=reminder_count,

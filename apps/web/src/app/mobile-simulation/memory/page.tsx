@@ -58,7 +58,7 @@ export default function MobileMemory() {
           <div className="flex justify-center p-8"><Loader2 className="w-8 h-8 text-purple-500 animate-spin" /></div>
         ) : memories.length === 0 ? (
           <div className="text-center p-8 bg-white rounded-3xl border border-gray-100 text-gray-500 text-xs font-medium">
-            Vyapaar AI is learning your business...
+            FinSight AI is learning your business...
           </div>
         ) : (
           memories.map((m) => (

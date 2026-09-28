@@ -1063,15 +1063,15 @@ export default function ForecastPage() {
             </p>
           </div>
 
-          {/* Vyapaar GrowthOS suggestion */}
+          {/* FinSight AI suggestion */}
           <div className="flex items-start gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
               <Sparkles className="w-4 h-4 text-[#00BAF2]" />
             </div>
             <p className="text-sm text-gray-700 leading-relaxed">
               {showHindi
-                ? "Vyapaar GrowthOS suggestion: Rs 40,000 save karo January ke lean period ke liye"
-                : "Vyapaar GrowthOS suggestion: Save Rs 40,000 for January lean period"}
+                ? "FinSight AI suggestion: Rs 40,000 save karo January ke lean period ke liye"
+                : "FinSight AI suggestion: Save Rs 40,000 for January lean period"}
             </p>
           </div>
 

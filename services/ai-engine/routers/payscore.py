@@ -1,7 +1,7 @@
 """
 PayScore router -- merchant creditworthiness score (0-100).
 
-PayScore is Vyapaar GrowthOS's proprietary scoring system that evaluates a merchant's
+PayScore is FinSight AI's proprietary scoring system that evaluates a merchant's
 financial health based on transaction regularity, profit margins, udhari
 management, and growth trajectory.
 """

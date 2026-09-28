@@ -1,5 +1,5 @@
 {
-  "description": "Vyapaar GrowthOS Intent Classification Training Data - 500+ Hindi/Hinglish examples for 12 intent classes",
+  "description": "FinSight AI Intent Classification Training Data - 500+ Hindi/Hinglish examples for 12 intent classes",
   "version": "1.0",
   "intents": {
     "CASH_RECEIVED": {

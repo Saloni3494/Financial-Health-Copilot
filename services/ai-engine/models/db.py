@@ -1,5 +1,5 @@
 """
-Supabase client singleton and async query helpers for all Vyapaar GrowthOS tables.
+Supabase client singleton and async query helpers for all FinSight AI tables.
 """
 
 from __future__ import annotations

@@ -384,7 +384,7 @@ async def notify_vendor(vendor_id: str, body: NotifyRequest):
         from services.twilio_service import send_whatsapp
         # Use merchant's sandbox number for demo
         merchant_phone = "+918261983331"
-        result = await send_whatsapp(to=merchant_phone, body=f"🔔 Vyapaar GrowthOS Vendor Alert\n\n{msg}")
+        result = await send_whatsapp(to=merchant_phone, body=f"🔔 FinSight AI Vendor Alert\n\n{msg}")
         return {"sent": result.get("status") == "sent", "message": msg, "to": merchant_phone, "result": result}
     except Exception as e:
         return {"sent": False, "message": msg, "error": str(e)}

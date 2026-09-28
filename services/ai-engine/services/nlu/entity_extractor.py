@@ -1,5 +1,5 @@
 """
-Entity Extractor for Vyapaar GrowthOS.
+Entity Extractor for FinSight AI.
 
 Uses Groq LLM with structured JSON output to extract named entities
 (AMOUNT, PERSON, CATEGORY, DATE, PRODUCT) from Hindi/Hinglish text.
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 ENTITY_SYSTEM_PROMPT = """\
-You are Vyapaar GrowthOS's entity extractor. Given a Hindi/Hinglish text from a small \
+You are FinSight AI's entity extractor. Given a Hindi/Hinglish text from a small \
 Indian shopkeeper AND its classified intent, extract the following entities.
 
 You MUST respond with valid JSON only — no extra text.

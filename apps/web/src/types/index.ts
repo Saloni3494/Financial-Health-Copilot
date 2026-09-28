@@ -1,4 +1,4 @@
-// Vyapaar GrowthOS TypeScript Interfaces
+// FinSight AI TypeScript Interfaces
 
 export interface Transaction {
   id: string;

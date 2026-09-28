@@ -1,5 +1,5 @@
 """
-Tavily Web Search integration for Vyapaar GrowthOS.
+Tavily Web Search integration for FinSight AI.
 
 Provides live web search for government MSME schemes, GST deductions,
 and income tax benefits using the Tavily async client.

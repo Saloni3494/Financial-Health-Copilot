@@ -24,7 +24,7 @@ const FEATURES = [
     icon: Mic,
     title: "Voice-first Bookkeeping",
     titleHi: "बोलकर हिसाब रखें",
-    desc: "Just speak naturally — Vyapaar GrowthOS understands Hindi, English and more",
+    desc: "Just speak naturally — FinSight AI understands Hindi, English and more",
   },
   {
     icon: BookOpen,
@@ -191,11 +191,11 @@ export default function LoginPage() {
             className="flex items-center gap-4"
           >
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl overflow-hidden bg-white/15 backdrop-blur-sm border border-white/20 shadow-lg">
-              <img src="/logo-munim.png" alt="Paytm Vyapaar" className="h-14 w-14 object-cover" />
+              <img src="/logo-munim.png" alt="FinSight AI" className="h-14 w-14 object-cover" />
             </div>
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-[#002e6e]">
-                Paytm Vyapaar
+                FinSight AI
               </h1>
               <p className="text-sm font-medium text-slate-500">
                 GrowthOS workspace
@@ -278,7 +278,7 @@ export default function LoginPage() {
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#002E6E] to-[#00BAF2] shadow-lg shadow-[#00BAF2]/20">
             <span className="text-base font-bold text-white">M</span>
           </div>
-          <span className="text-lg font-bold text-[#002E6E]">Vyapaar GrowthOS</span>
+          <span className="text-lg font-bold text-[#002E6E]">FinSight AI</span>
         </div>
 
         <motion.div
@@ -291,7 +291,7 @@ export default function LoginPage() {
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-[#002e6e]">Welcome back</h2>
             <p className="mt-1 text-sm text-slate-500">
-              Login to your Vyapaar GrowthOS account
+              Login to your FinSight AI account
             </p>
           </div>
 
@@ -490,7 +490,7 @@ export default function LoginPage() {
               transition={{ delay: 0.5 }}
             >
               <p className="mt-8 text-center text-[11px] text-gray-400 leading-relaxed">
-                By continuing, you agree to Vyapaar GrowthOS&apos;s{" "}
+                By continuing, you agree to FinSight AI&apos;s{" "}
                 <span className="text-gray-500 hover:underline cursor-pointer">
                   Terms of Service
                 </span>{" "}

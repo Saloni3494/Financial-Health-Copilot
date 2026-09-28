@@ -1047,7 +1047,7 @@ async def _employee_advance(merchant_id: str, entities: dict[str, Any]) -> Actio
 async def _greeting(merchant_id: str, entities: dict[str, Any]) -> ActionResult:
     return ActionResult(
         success=True,
-        response_text="Namaste! Main Vyapaar hoon, aapka AI munshi. Batayiye, kya karna hai?",
+        response_text="Namaste! Main FinSight hoon, aapka AI munshi. Batayiye, kya karna hai?",
     )
 
 

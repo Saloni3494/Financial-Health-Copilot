@@ -84,7 +84,7 @@ async def _generate_briefing_text(merchant_id: str) -> dict:
     )
 
     prompt = (
-        "You are Vyapaar, an AI business assistant for Indian SMBs. "
+        "You are FinSight, an AI business assistant for Indian SMBs. "
         "Generate a morning business briefing in English. "
         "Keep it warm and conversational, like a trusted munshi giving an update. "
         "3-4 lines max for summary. Include one actionable tip in recommendations. "
@@ -101,7 +101,7 @@ async def _generate_briefing_text(merchant_id: str) -> dict:
     payload = {
         "model": settings.groq_model,
         "messages": [
-            {"role": "system", "content": "You are Vyapaar, a friendly AI business assistant. Respond in JSON only."},
+            {"role": "system", "content": "You are FinSight, a friendly AI business assistant. Respond in JSON only."},
             {"role": "user", "content": prompt},
         ],
         "temperature": 0.7,

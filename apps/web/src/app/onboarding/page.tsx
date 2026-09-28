@@ -279,7 +279,7 @@ export default function OnboardingPage() {
                   अपनी भाषा चुनें
                 </h2>
                 <p className="text-sm text-gray-500 mb-8">
-                  Choose your preferred language for Vyapaar GrowthOS
+                  Choose your preferred language for FinSight AI
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                   {LANGUAGES.map((lang) => (
@@ -664,7 +664,7 @@ export default function OnboardingPage() {
                       <PartyPopper className="h-16 w-16 text-[#00BAF2] mb-4" />
                     </motion.div>
                     <h2 className="text-3xl font-bold text-[#002E6E] mb-2 text-center">
-                      Aapka Vyapaar GrowthOS ready hai! {"\ud83c\udf89"}
+                      Aapka FinSight AI ready hai! {"\ud83c\udf89"}
                     </h2>
                     <p className="text-sm text-gray-500">
                       Redirecting to your dashboard...
@@ -676,7 +676,7 @@ export default function OnboardingPage() {
                       पहला वॉइस कमांड दें
                     </h2>
                     <p className="text-sm text-gray-500 mb-12 text-center">
-                      Try your first voice command with Vyapaar GrowthOS
+                      Try your first voice command with FinSight AI
                     </p>
                     <div className="flex flex-col items-center">
                       <motion.button

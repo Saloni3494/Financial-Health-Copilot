@@ -276,7 +276,7 @@ export default function ChatPage() {
           <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-white bg-emerald-400" />
         </div>
         <div>
-          <h2 className="text-sm font-bold text-[#002E6E]">Vyapaar AI</h2>
+          <h2 className="text-sm font-bold text-[#002E6E]">FinSight AI</h2>
           <p className="text-[11px] text-emerald-500 font-medium flex items-center gap-1">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
             Online

@@ -78,7 +78,7 @@ export default function MobileApprovals() {
         <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
           <div className="flex items-center gap-2 mb-4">
             <Sliders className="w-4 h-4 text-slate-500" />
-            <h2 className="text-sm font-bold text-slate-900">Vyapaar AI Autonomy</h2>
+            <h2 className="text-sm font-bold text-slate-900">FinSight AI Autonomy</h2>
           </div>
 
           <div className="space-y-3">

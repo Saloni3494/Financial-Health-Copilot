@@ -414,7 +414,7 @@ async def share_invoice(invoice_id: str, body: ShareInvoiceRequest):
     lines.append("")
     lines.append(f"Status: {'PAID' if invoice.get('status') == 'paid' else 'UNPAID'}")
     lines.append("")
-    lines.append("-- Vyapaar GrowthOS Digital Invoice --")
+    lines.append("-- FinSight AI Digital Invoice --")
 
     message = "\n".join(lines)
 

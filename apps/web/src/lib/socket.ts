@@ -28,7 +28,7 @@ export function getSocket(): Socket | null {
         transports: ["websocket", "polling"],
       });
     } catch (err) {
-      console.warn("Vyapaar GrowthOS: Failed to create socket", err);
+      console.warn("FinSight AI: Failed to create socket", err);
       return null;
     }
   }

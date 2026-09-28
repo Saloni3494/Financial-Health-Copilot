@@ -224,7 +224,7 @@ export function VoiceChatWidget() {
                 <Sparkles className="h-4 w-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold">Vyapaar AI</p>
+                <p className="text-sm font-semibold">FinSight AI</p>
                 <p className="text-[10px] text-white/70 flex items-center gap-1">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
                   Online

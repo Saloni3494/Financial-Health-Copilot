@@ -1,5 +1,5 @@
 """
-Intent Classifier for Vyapaar GrowthOS.
+Intent Classifier for FinSight AI.
 
 Uses Groq LLM with a detailed structured prompt to classify user utterances
 (Hindi / Hinglish) into one of 12 business intents for a small Indian shopkeeper.
@@ -33,7 +33,7 @@ class IntentResult:
 # ---------------------------------------------------------------------------
 
 INTENT_SYSTEM_PROMPT = """\
-You are Vyapaar GrowthOS's intent classifier. You analyze Hindi/Hinglish text spoken by \
+You are FinSight AI's intent classifier. You analyze Hindi/Hinglish text spoken by \
 small Indian shopkeepers and classify it into exactly ONE of the intents listed below.
 
 You MUST respond with valid JSON only — no extra text.

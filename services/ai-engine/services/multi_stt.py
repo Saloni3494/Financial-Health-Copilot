@@ -1,5 +1,5 @@
 """
-Multi-provider STT service for Vyapaar GrowthOS.
+Multi-provider STT service for FinSight AI.
 Providers: Groq Whisper (free) -> ElevenLabs Scribe v2 -> Sarvam AI -> OpenAI Whisper (paid fallback)
 """
 import logging

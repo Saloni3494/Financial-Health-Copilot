@@ -10,7 +10,7 @@ Test Mode: Uses test credentials — no real money moves.
 
 Flow:
 1. Merchant says "Sharma ji ko remind karo"
-2. Vyapaar GrowthOS generates a Paytm payment link for Rs 8,000
+2. FinSight AI generates a Paytm payment link for Rs 8,000
 3. Sends WhatsApp message with the link embedded
 4. Sharma ji clicks → Paytm opens → pays → webhook notifies us
 5. Dashboard updates: udhari settled, income recorded

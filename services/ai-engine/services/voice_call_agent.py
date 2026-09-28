@@ -1,12 +1,12 @@
 """
-Vyapaar GrowthOS Voice Call Agent for Udhari Collection
+FinSight AI Voice Call Agent for Udhari Collection
 
 Makes automated Hindi voice calls to debtors using Twilio.
 The AI speaks a culturally-aware Hindi message reminding the debtor
 about their pending payment, and provides a Paytm payment link via SMS.
 
 Flow:
-1. Vyapaar GrowthOS decides to call a debtor (via Thompson Sampling RL)
+1. FinSight AI decides to call a debtor (via Thompson Sampling RL)
 2. Twilio initiates a call to the debtor's phone
 3. Twilio plays a TTS message in Hindi (using Sarvam Bulbul or Twilio's Hindi voice)
 4. After the call, sends a follow-up SMS/WhatsApp with the Paytm payment link

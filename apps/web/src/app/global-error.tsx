@@ -56,7 +56,7 @@ export default function GlobalError({
                 marginBottom: "8px",
               }}
             >
-              Vyapaar GrowthOS mein error aa gaya
+              FinSight AI mein error aa gaya
             </h2>
             <p
               style={{

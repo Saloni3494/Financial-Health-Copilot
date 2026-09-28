@@ -178,7 +178,7 @@ export default function WhatsAppPage() {
         {/* Page Title */}
         <div className="mb-3">
           <h1 className="text-xl font-bold text-vyapaar-primary-dark">
-            Vyapaar GrowthOS Chat
+            FinSight AI Chat
           </h1>
           <p className="text-sm text-vyapaar-text-secondary">
             WhatsApp-style conversation with your AI muneem
@@ -209,7 +209,7 @@ export default function WhatsAppPage() {
 
         {/* Chat Window */}
         <div className="flex-1 min-h-0">
-          <ChatWindow messages={messages} merchantName="Vyapaar GrowthOS - Aapka Digital Muneem" />
+          <ChatWindow messages={messages} merchantName="FinSight AI - Aapka Digital Muneem" />
         </div>
 
         {/* Compose Box */}

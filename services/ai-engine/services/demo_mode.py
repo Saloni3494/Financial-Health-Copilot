@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Demo Mode — In-memory data store for running without external services.
+FinSight AI Demo Mode — In-memory data store for running without external services.
 
 When Supabase/Groq/Redis are not configured, the app falls back to this
 module which provides:

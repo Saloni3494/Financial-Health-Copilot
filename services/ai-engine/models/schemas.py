@@ -1,5 +1,5 @@
 """
-Pydantic models for all Vyapaar GrowthOS API request/response payloads.
+Pydantic models for all FinSight AI API request/response payloads.
 
 Naming convention:
   - *Create   = request body for creating a resource

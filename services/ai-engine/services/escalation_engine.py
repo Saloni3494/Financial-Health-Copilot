@@ -147,7 +147,7 @@ async def execute_escalation(
             amount=remaining,
             days_overdue=plan["days_overdue"],
             tone=plan["tone"],
-            merchant_name="Vyapaar GrowthOS Merchant",
+            merchant_name="FinSight AI Merchant",
             merchant_owner="Merchant",
             payment_link=payment_link,
             reminder_count=plan["reminder_count"],

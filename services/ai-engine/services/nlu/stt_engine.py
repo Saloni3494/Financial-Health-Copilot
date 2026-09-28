@@ -1,5 +1,5 @@
 """
-Speech-to-Text engine for Vyapaar GrowthOS.
+Speech-to-Text engine for FinSight AI.
 
 Primary: Groq Whisper API (whisper-large-v3) with language="hi".
 Applies noise reduction via `noisereduce` before sending audio to the API.

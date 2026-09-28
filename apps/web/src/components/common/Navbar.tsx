@@ -64,7 +64,7 @@ function PayScoreBadge({ score }: { score: number }) {
 }
 
 /**
- * Top navigation bar for Vyapaar GrowthOS.
+ * Top navigation bar for FinSight AI.
  */
 export function Navbar({
   shopName = "Sunita Saree Shop",
@@ -86,7 +86,7 @@ export function Navbar({
           <span className="text-sm font-bold text-white">M</span>
         </div>
         <span className="text-base font-bold text-vyapaar-primary-dark">
-          Vyapaar GrowthOS
+          FinSight AI
         </span>
         {isConnected && <LiveDot />}
       </div>

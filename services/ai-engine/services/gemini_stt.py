@@ -1,6 +1,6 @@
 """
-Google Gemini multimodal STT client for Vyapaar GrowthOS.
-Adapted from vyapaarai-sarvam-stt repo -- standalone version using Vyapaar GrowthOS config.
+Google Gemini multimodal STT client for FinSight AI.
+Adapted from vyapaarai-sarvam-stt repo -- standalone version using FinSight AI config.
 """
 from __future__ import annotations
 

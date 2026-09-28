@@ -19,7 +19,7 @@ sio = socketio.AsyncServer(
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown events"""
-    print("[START] Vyapaar GrowthOS Backend Starting...")
+    print("[START] FinSight AI Backend Starting...")
     print(f"   Environment: {settings.environment}")
     print(f"   Groq Model: {settings.groq_model}")
     # Initialize services
@@ -27,12 +27,12 @@ async def lifespan(app: FastAPI):
     init_supabase()
     print("   [OK] Supabase connected")
     yield
-    print("[STOP] Vyapaar GrowthOS Backend Shutting Down...")
+    print("[STOP] FinSight AI Backend Shutting Down...")
 
 
 # FastAPI app
 app = FastAPI(
-    title="Vyapaar GrowthOS API",
+    title="FinSight AI API",
     description="Agentic AI Business Operating System for Indian SMBs",
     version="1.0.0",
     lifespan=lifespan,
@@ -96,7 +96,7 @@ async def join_merchant(sid, data):
 @app.get("/")
 async def root():
     return {
-        "name": "Vyapaar GrowthOS API",
+        "name": "FinSight AI API",
         "version": "1.0.0",
         "status": "running",
         "tagline": "The Agentic AI That Runs Your Business",

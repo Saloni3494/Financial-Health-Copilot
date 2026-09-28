@@ -74,7 +74,7 @@ export default function MemoryPage() {
           </h1>
           <p className="text-sm text-gray-500 mt-1">
             Personalized insights learned from past actual outcomes.
-            Vyapaar AI uses these to refine future Opportunity recommendations.
+            FinSight AI uses these to refine future Opportunity recommendations.
           </p>
         </div>
 

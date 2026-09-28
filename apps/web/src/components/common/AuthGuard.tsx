@@ -5,29 +5,29 @@ import { usePathname, useRouter } from "next/navigation";
 
 const PUBLIC_ROUTES = ["/login", "/demo", "/soundbox", "/"];
 
-interface VyapaarAuth {
+interface FinSightAuth {
   phone: string;
   merchant_id: string;
   token: string;
   onboarded: boolean;
 }
 
-export function getVyapaarAuth(): VyapaarAuth | null {
+export function getFinSightAuth(): FinSightAuth | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = localStorage.getItem("vyapaar_auth");
     if (!raw) return null;
-    return JSON.parse(raw) as VyapaarAuth;
+    return JSON.parse(raw) as FinSightAuth;
   } catch {
     return null;
   }
 }
 
-export function setVyapaarAuth(auth: VyapaarAuth) {
+export function setFinSightAuth(auth: FinSightAuth) {
   localStorage.setItem("vyapaar_auth", JSON.stringify(auth));
 }
 
-export function clearVyapaarAuth() {
+export function clearFinSightAuth() {
   localStorage.removeItem("vyapaar_auth");
 }
 
@@ -42,7 +42,7 @@ export function AuthGuard({ children, requireOnboarded = true }: AuthGuardProps)
   const [status, setStatus] = useState<"loading" | "ready">("loading");
 
   useEffect(() => {
-    const auth = getVyapaarAuth();
+    const auth = getFinSightAuth();
     const isPublic = PUBLIC_ROUTES.some((r) => r === "/" ? pathname === "/" : pathname.startsWith(r));
 
     // Not logged in -> show login page first (judges see the login UI)
@@ -53,7 +53,7 @@ export function AuthGuard({ children, requireOnboarded = true }: AuthGuardProps)
 
     // Logged in but not onboarded — auto-set onboarded for hackathon
     if (auth && !auth.onboarded && requireOnboarded && pathname !== "/onboarding") {
-      setVyapaarAuth({ ...auth, onboarded: true });
+      setFinSightAuth({ ...auth, onboarded: true });
     }
 
     // Logged in and onboarded, but on /login -> redirect to dashboard

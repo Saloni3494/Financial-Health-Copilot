@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Vyapaar GrowthOS ErrorBoundary caught:", error, errorInfo);
+    console.error("FinSight AI ErrorBoundary caught:", error, errorInfo);
   }
 
   render() {

@@ -1,5 +1,5 @@
 """
-Vyapaar GrowthOS Customer Radar Agent — TS2Vec-inspired Churn Detection
+FinSight AI Customer Radar Agent — TS2Vec-inspired Churn Detection
 
 Analyzes customer behavior to:
 1. Calculate RFM (Recency, Frequency, Monetary) scores
@@ -54,7 +54,7 @@ SEGMENT_MAP = {
     (2, 1, 1): "churned",
 }
 
-WINBACK_SYSTEM_PROMPT = """You are Vyapaar GrowthOS's customer winback specialist for Indian small businesses.
+WINBACK_SYSTEM_PROMPT = """You are FinSight AI's customer winback specialist for Indian small businesses.
 
 Your task: Generate a personalized WhatsApp message in English to win back a customer who hasn't visited recently.
 
