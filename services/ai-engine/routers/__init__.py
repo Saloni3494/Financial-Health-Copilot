@@ -19,6 +19,7 @@ from routers import (
     paytm,
     invoices,
     inventory,
+    accounts,
 )
 
 __all__ = [

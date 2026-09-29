@@ -31,7 +31,8 @@ import {
   Target,
   ShieldCheck,
   LineChart,
-  BrainCircuit
+  BrainCircuit,
+  Wallet
 } from "lucide-react";
 import { clearFinSightAuth } from "@/components/common/AuthGuard";
 
@@ -44,6 +45,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Dashboard", labelHindi: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
+  { label: "Accounts & Cards", labelHindi: "Accounts & Cards", icon: Wallet, href: "/accounts" },
   { label: "Missions", labelHindi: "Missions", icon: Target, href: "/missions" },
   { label: "Impact & ROI", labelHindi: "Impact & ROI", icon: LineChart, href: "/impact" },
   { label: "Growth Memory", labelHindi: "Growth Memory", icon: BrainCircuit, href: "/memory" },

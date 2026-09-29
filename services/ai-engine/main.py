@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from config import get_settings
-from routers import voice, transactions, udhari, dashboard, forecast, payscore, customers, whatsapp, briefing, demo, paytm, vendors, invoices, inventory, opportunities, simulator, missions, policies, impact, memory
+from routers import voice, transactions, udhari, dashboard, forecast, payscore, customers, whatsapp, briefing, demo, paytm, vendors, invoices, inventory, opportunities, simulator, missions, policies, impact, memory, accounts
 
 settings = get_settings()
 
@@ -68,6 +68,7 @@ app.include_router(missions.router, prefix="/api/missions", tags=["Missions"])
 app.include_router(policies.router, prefix="/api/policies", tags=["Policies"])
 app.include_router(impact.router, prefix="/api/impact", tags=["Impact"])
 app.include_router(memory.router, prefix="/api/memory", tags=["Memory"])
+app.include_router(accounts.router, prefix="/api/accounts", tags=["Accounts"])
 
 # Mount Socket.IO on FastAPI
 socket_app = socketio.ASGIApp(sio, other_asgi_app=app)

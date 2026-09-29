@@ -7,6 +7,21 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- ============================================
+-- ACCOUNTS (Bank Accounts, Credit Cards, etc.)
+-- ============================================
+CREATE TABLE accounts (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL CHECK (type IN ('bank_account', 'credit_card', 'loan', 'investment')),
+    balance DECIMAL(12,2) NOT NULL DEFAULT 0,
+    credit_limit DECIMAL(12,2) DEFAULT 0,
+    apr DECIMAL(5,2) DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- ============================================
 -- MERCHANTS
 -- ============================================
 CREATE TABLE merchants (

@@ -1,0 +1,33 @@
+{
+  "11111111-1111-1111-1111-111111111111": [
+    {
+      "id": "acc-1",
+      "name": "HDFC Checking",
+      "type": "bank_account",
+      "balance": 45000,
+      "credit_limit": 0
+    },
+    {
+      "id": "acc-2",
+      "name": "SBI Savings",
+      "type": "bank_account",
+      "balance": 150000,
+      "credit_limit": 0
+    },
+    {
+      "id": "acc-3",
+      "name": "ICICI Credit Card",
+      "type": "credit_card",
+      "balance": -12500,
+      "credit_limit": 50000,
+      "apr": 42.0
+    },
+    {
+      "id": "acc-4",
+      "name": "Zerodha Mutual Funds",
+      "type": "investment",
+      "balance": 250000,
+      "credit_limit": 0
+    }
+  ]
+}

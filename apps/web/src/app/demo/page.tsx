@@ -106,8 +106,9 @@ const DEMO_STEPS: DemoStep[] = [
 // ---- Iframe Navigation Tabs ----
 const IFRAME_PAGES = [
   { label: "Dashboard", path: "/", icon: "🏠" },
+  { label: "Accounts", path: "/accounts", icon: "💳" },
   { label: "Udhari", path: "/udhari", icon: "📋" },
-
+  { label: "Impact", path: "/impact", icon: "🚀" },
   { label: "Forecast", path: "/forecast", icon: "📈" },
 ];
 
