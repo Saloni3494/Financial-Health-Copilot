@@ -9,7 +9,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- ============================================
 -- ACCOUNTS (Bank Accounts, Credit Cards, etc.)
 -- ============================================
-CREATE TABLE accounts (
+CREATE TABLE IF NOT EXISTS accounts (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
     name TEXT NOT NULL,
@@ -17,6 +17,69 @@ CREATE TABLE accounts (
     balance DECIMAL(12,2) NOT NULL DEFAULT 0,
     credit_limit DECIMAL(12,2) DEFAULT 0,
     apr DECIMAL(5,2) DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- ============================================
+-- INVESTMENTS (Mutual Funds, Stocks, FDs, etc.)
+-- ============================================
+CREATE TABLE IF NOT EXISTS investments (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL CHECK (type IN ('mutual_fund', 'fixed_deposit', 'stocks', 'gold')),
+    invested_amount DECIMAL(12,2) NOT NULL DEFAULT 0,
+    current_value DECIMAL(12,2) NOT NULL DEFAULT 0,
+    monthly_sip DECIMAL(12,2) DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- ============================================
+-- LOANS & DEBT (Home, Car, Personal)
+-- ============================================
+CREATE TABLE IF NOT EXISTS loans (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL CHECK (type IN ('home_loan', 'car_loan', 'personal')),
+    principal DECIMAL(12,2) NOT NULL DEFAULT 0,
+    outstanding DECIMAL(12,2) NOT NULL DEFAULT 0,
+    emi_amount DECIMAL(12,2) DEFAULT 0,
+    interest_rate DECIMAL(5,2) DEFAULT 0,
+    next_due_date DATE,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- ============================================
+-- RECURRING PAYMENTS & SUBSCRIPTIONS
+-- ============================================
+CREATE TABLE IF NOT EXISTS subscriptions (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL CHECK (category IN ('entertainment', 'health', 'shopping', 'utilities', 'other')),
+    amount DECIMAL(12,2) NOT NULL DEFAULT 0,
+    billing_cycle TEXT NOT NULL CHECK (billing_cycle IN ('monthly', 'yearly', 'quarterly', 'weekly')),
+    next_billing_date DATE,
+    status TEXT DEFAULT 'active' CHECK (status IN ('active', 'paused', 'cancelled')),
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- ============================================
+-- SAVINGS GOALS
+-- ============================================
+CREATE TABLE IF NOT EXISTS savings_goals (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL DEFAULT 'general',
+    target_amount DECIMAL(12,2) NOT NULL DEFAULT 0,
+    current_amount DECIMAL(12,2) NOT NULL DEFAULT 0,
+    deadline DATE,
     created_at TIMESTAMPTZ DEFAULT now(),
     updated_at TIMESTAMPTZ DEFAULT now()
 );

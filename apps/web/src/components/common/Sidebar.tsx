@@ -32,7 +32,11 @@ import {
   ShieldCheck,
   LineChart,
   BrainCircuit,
-  Wallet
+  Wallet,
+  PieChart,
+  CalendarDays,
+  PiggyBank,
+  Calculator
 } from "lucide-react";
 import { clearFinSightAuth } from "@/components/common/AuthGuard";
 
@@ -46,11 +50,15 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "Dashboard", labelHindi: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
   { label: "Accounts & Cards", labelHindi: "Accounts & Cards", icon: Wallet, href: "/accounts" },
+  { label: "Savings & Goals", labelHindi: "Savings & Goals", icon: PiggyBank, href: "/savings" },
+  { label: "Investments", labelHindi: "Investments", icon: PieChart, href: "/investments" },
+  { label: "Subscriptions", labelHindi: "Subscriptions", icon: CalendarDays, href: "/subscriptions" },
+  { label: "Affordability Check", labelHindi: "Affordability", icon: Calculator, href: "/affordability" },
   { label: "Missions", labelHindi: "Missions", icon: Target, href: "/missions" },
   { label: "Impact & ROI", labelHindi: "Impact & ROI", icon: LineChart, href: "/impact" },
   { label: "Growth Memory", labelHindi: "Growth Memory", icon: BrainCircuit, href: "/memory" },
   { label: "Opportunities", labelHindi: "Opportunities", icon: Lightbulb, href: "/opportunities" },
-  { label: "Pending Debt", labelHindi: "Pending Debt", icon: BookOpen, href: "/udhari" },
+  { label: "Loans & Debt", labelHindi: "Loans & Debt", icon: Landmark, href: "/loans" },
   { label: "Cash Flow", labelHindi: "Cash Flow", icon: TrendingUp, href: "/forecast" },
   { label: "Health Score", labelHindi: "Health Score", icon: Award, href: "/payscore" },
   { label: "Chat with Copilot", labelHindi: "Chat with Copilot", icon: MessageSquare, href: "/chat" },

@@ -1,0 +1,34 @@
+{
+  "11111111-1111-1111-1111-111111111111": [
+    {
+      "id": "loan-0ab85126",
+      "name": "SBI Home Loan",
+      "type": "home_loan",
+      "principal": 5000000,
+      "outstanding": 4250000,
+      "emi_amount": 42000,
+      "interest_rate": 8.5,
+      "next_due_date": "2026-10-05"
+    },
+    {
+      "id": "loan-3ae24d05",
+      "name": "HDFC Car Loan",
+      "type": "car_loan",
+      "principal": 800000,
+      "outstanding": 320000,
+      "emi_amount": 16500,
+      "interest_rate": 9.2,
+      "next_due_date": "2026-10-10"
+    },
+    {
+      "id": "loan-b7cecd7e",
+      "name": "Borrowed from Rahul",
+      "type": "personal",
+      "principal": 50000,
+      "outstanding": 25000,
+      "emi_amount": 0,
+      "interest_rate": 0,
+      "next_due_date": "2026-11-01"
+    }
+  ]
+}

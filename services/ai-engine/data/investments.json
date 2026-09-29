@@ -1,0 +1,28 @@
+{
+  "11111111-1111-1111-1111-111111111111": [
+    {
+      "id": "inv-d7f79eaf",
+      "name": "Nifty 50 Index Fund",
+      "type": "mutual_fund",
+      "invested_amount": 50000,
+      "current_value": 62500,
+      "monthly_sip": 5000
+    },
+    {
+      "id": "inv-915867f2",
+      "name": "HDFC Fixed Deposit",
+      "type": "fixed_deposit",
+      "invested_amount": 100000,
+      "current_value": 107500,
+      "monthly_sip": 0
+    },
+    {
+      "id": "inv-512f7b73",
+      "name": "Digital Gold",
+      "type": "gold",
+      "invested_amount": 15000,
+      "current_value": 16200,
+      "monthly_sip": 0
+    }
+  ]
+}

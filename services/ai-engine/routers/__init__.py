@@ -20,6 +20,11 @@ from routers import (
     invoices,
     inventory,
     accounts,
+    investments,
+    loans,
+    subscriptions,
+    savings,
+    affordability,
 )
 
 __all__ = [

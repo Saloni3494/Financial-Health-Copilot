@@ -107,9 +107,12 @@ const DEMO_STEPS: DemoStep[] = [
 const IFRAME_PAGES = [
   { label: "Dashboard", path: "/", icon: "🏠" },
   { label: "Accounts", path: "/accounts", icon: "💳" },
-  { label: "Udhari", path: "/udhari", icon: "📋" },
+  { label: "Savings", path: "/savings", icon: "🐷" },
+  { label: "Investments", path: "/investments", icon: "📈" },
+  { label: "Loans", path: "/loans", icon: "🏦" },
+  { label: "Subscriptions", path: "/subscriptions", icon: "📅" },
+  { label: "Affordability", path: "/affordability", icon: "🤔" },
   { label: "Impact", path: "/impact", icon: "🚀" },
-  { label: "Forecast", path: "/forecast", icon: "📈" },
 ];
 
 export default function DemoControlPanel() {

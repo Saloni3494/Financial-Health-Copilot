@@ -1,0 +1,31 @@
+{
+  "11111111-1111-1111-1111-111111111111": [
+    {
+      "id": "sub-fce75d37",
+      "name": "Netflix Premium",
+      "category": "entertainment",
+      "amount": 649,
+      "billing_cycle": "monthly",
+      "next_billing_date": "2026-10-15",
+      "status": "active"
+    },
+    {
+      "id": "sub-b358dddf",
+      "name": "Gym Membership",
+      "category": "health",
+      "amount": 2500,
+      "billing_cycle": "monthly",
+      "next_billing_date": "2026-10-01",
+      "status": "active"
+    },
+    {
+      "id": "sub-390cf8d5",
+      "name": "Amazon Prime",
+      "category": "shopping",
+      "amount": 1499,
+      "billing_cycle": "yearly",
+      "next_billing_date": "2027-05-20",
+      "status": "active"
+    }
+  ]
+}
