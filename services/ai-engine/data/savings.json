@@ -1,0 +1,25 @@
+{
+  "11111111-1111-1111-1111-111111111111": {
+    "monthly_income": 120000,
+    "monthly_expenses": 85000,
+    "savings_rate": 29.1,
+    "goals": [
+      {
+        "id": "goal-eb06a867",
+        "name": "Emergency Fund",
+        "target_amount": 500000,
+        "current_amount": 250000,
+        "deadline": "2027-01-01",
+        "category": "safety"
+      },
+      {
+        "id": "goal-4023f920",
+        "name": "Europe Vacation",
+        "target_amount": 300000,
+        "current_amount": 75000,
+        "deadline": "2027-06-15",
+        "category": "travel"
+      }
+    ]
+  }
+}

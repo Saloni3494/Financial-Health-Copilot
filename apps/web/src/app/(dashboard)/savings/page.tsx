@@ -189,7 +189,7 @@ export default function SavingsPage() {
             <p className={`text-3xl font-bold ${data.savings_rate >= 20 ? 'text-emerald-600' : data.savings_rate >= 10 ? 'text-amber-500' : 'text-red-500'}`}>
               {data.savings_rate}%
             </p>
-            <p className="text-xs text-gray-400 mb-1">Target: >20%</p>
+            <p className="text-xs text-gray-400 mb-1">Target: &gt;20%</p>
           </div>
         </div>
         <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
